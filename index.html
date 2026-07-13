@@ -231,6 +231,29 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
 .subhead{color:#fff;font-size:20px;font-weight:800;margin:40px 0 6px}
 .subhead.dk{color:var(--ink)}
 
+/* ===== 首頁快速進入按鈕 ===== */
+.qnav{background:var(--cream2);padding:clamp(36px,6vw,64px) 20px}
+.qnav h3{font-size:clamp(20px,3vw,26px);font-weight:800;margin-bottom:6px}
+.qnav p{color:var(--ink-soft);font-size:14.5px;margin-bottom:24px}
+.qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.qbtn{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);transition:.2s}
+.qbtn:hover{border-color:var(--terra);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.07)}
+.qbtn .qn{width:34px;height:34px;border-radius:9px;background:var(--terra);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex-shrink:0}
+.qbtn .qt{font-weight:800;font-size:15px}
+.qbtn .qd{font-size:12px;color:var(--ink-soft);margin-top:2px}
+
+/* ===== 製作案例區塊 ===== */
+.spectable{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin-bottom:8px}
+.spectable td{padding:13px 16px;font-size:14px;border-bottom:1px solid var(--line);vertical-align:top}
+.spectable tr:last-child td{border-bottom:none}
+.spectable td:first-child{font-weight:800;color:var(--ink);width:120px}
+.spectable td:last-child{color:var(--ink-soft)}
+.timeline{display:grid;gap:10px}
+.tl{display:flex;gap:14px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px;align-items:flex-start}
+.tl .tn{color:var(--terra);font-weight:800;font-size:15px;white-space:nowrap;min-width:80px}
+.tl .tx{font-size:14px;color:var(--ink)}
+.tl .tx b{color:var(--ink)}
+
 /* ===== RESPONSIVE ===== */
 @media(max-width:820px){
   .g3,.g2,.steps,.compare,.gen,.shotwrap,.md-compare{grid-template-columns:1fr}
@@ -257,6 +280,7 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
       <a href="#gen" onclick="closeNav()">範本製作</a>
       <a href="#agent" onclick="closeNav()">做 Agent</a>
       <a href="#case" onclick="closeNav()">案例分享</a>
+      <a href="#story" onclick="closeNav()">製作案例</a>
     </div>
   </div>
 </nav>
@@ -271,6 +295,23 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
     <div class="scroll-tip">↓ 往下滑，一步步來</div>
   </div>
 </header>
+
+<!-- 首頁快速進入 -->
+<section class="qnav">
+  <div class="wrap">
+    <h3>想看哪一段？直接點進去</h3>
+    <p>整個內容在同一頁，用下面的按鈕跳到你想看的區塊。</p>
+    <div class="qgrid">
+      <a class="qbtn" href="#ai"><span class="qn">1</span><span><span class="qt">什麼是 AI</span><span class="qd">三層 AI 分清楚</span></span></a>
+      <a class="qbtn" href="#install"><span class="qn">2</span><span><span class="qt">AI 安裝</span><span class="qd">Claude／Codex 桌面端</span></span></a>
+      <a class="qbtn" href="#md"><span class="qn">3</span><span><span class="qt">MD 文件</span><span class="qd">讓 AI 更懂你</span></span></a>
+      <a class="qbtn" href="#gen"><span class="qn">4</span><span><span class="qt">範本製作</span><span class="qd">一鍵生成 MD</span></span></a>
+      <a class="qbtn" href="#agent"><span class="qn">5</span><span><span class="qt">做 Agent</span><span class="qd">一句指令自動跑</span></span></a>
+      <a class="qbtn" href="#case"><span class="qn">6</span><span><span class="qt">案例分享</span><span class="qd">實際成品連結</span></span></a>
+      <a class="qbtn" href="#story"><span class="qn">7</span><span><span class="qt">製作案例</span><span class="qd">這頁怎麼做出來的</span></span></a>
+    </div>
+  </div>
+</section>
 
 <!-- 什麼是 AI（只講三層，不含任何軟體介面）-->
 <section id="ai">
@@ -600,6 +641,54 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
         <p style="margin-top:10px;font-size:13px;color:var(--ink-soft)">沒有真實成績，就請 AI 生成假資料練習。</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- 製作案例 -->
+<section id="story" class="tint">
+  <div class="wrap">
+    <div class="eyebrow">07 · 幕後花絮</div>
+    <h2 class="title">這個網頁是怎麼做出來的</h2>
+    <p class="lead">這一頁本身就是一個「用 AI 開發」的活教材 —— 手上只有幾份簡報，怎麼一步步變成你現在看到的互動網頁。</p>
+
+    <div class="card" style="background:var(--bg-dark);border:none;margin-bottom:32px">
+      <h3 style="color:#fff">🎯 成品</h3>
+      <p style="color:#a99e94">一頁式互動網頁，手機電腦都能開，用單一 HTML 檔完成、發佈在 GitHub Pages。</p>
+      <a href="https://jackchan1973.github.io/learn-ai-web/" target="_blank" rel="noopener" style="color:var(--terra);font-weight:700;font-size:14px;text-decoration:none;display:inline-block;margin-top:8px">jackchan1973.github.io/learn-ai-web ↗</a>
+    </div>
+
+    <h4 style="font-weight:800;margin:0 0 14px;font-size:18px">📦 網頁內容包括哪些</h4>
+    <table class="spectable">
+      <tr><td>什麼是 AI</td><td>三層 AI：LLM（大語言模型）／RAG（工作流）／Agent（會做決定）</td></tr>
+      <tr><td>AI 安裝</td><td>Claude、Codex 兩個桌面端分頁教學，含權限／顯示模式設定</td></tr>
+      <tr><td>MD 文件</td><td>CLAUDE.md（Claude）vs AGENTS.md（Codex）、全局 vs 專案記憶</td></tr>
+      <tr><td>範本產生器</td><td>填空即時生成專屬 MD、一鍵複製</td></tr>
+      <tr><td>做自己的 Agent</td><td>一句指令自動跑到交付的 8 步配方（含 3 個安全煞車）</td></tr>
+      <tr><td>案例分享</td><td>單字複習程式、刷題工具（都有線上網址）＋回家作業</td></tr>
+      <tr><td>製作案例</td><td>就是這一段：這個網頁是怎麼做出來的</td></tr>
+    </table>
+
+    <h4 style="font-weight:800;margin:36px 0 14px;font-size:18px">🛠 開發流程（正好走了一遍「做自己的 Agent」8 步）</h4>
+    <div class="timeline">
+      <div class="tl"><span class="tn">① 討論需求</span><span class="tx">先定主題「學習 AI，和未來一起成長」</span></div>
+      <div class="tl"><span class="tn">② 制定範圍</span><span class="tx">只做 Claude／Codex 桌面端，砍掉終端機版（先教最簡單的）</span></div>
+      <div class="tl"><span class="tn">③ 定架構</span><span class="tx">先討論區塊架構，確認後才動手</span></div>
+      <div class="tl"><span class="tn">④ 紅線</span><span class="tx">不亂加內容、每一項改動先列清單等確認</span></div>
+      <div class="tl"><span class="tn">⑤ 執行</span><span class="tx">一版做出來，配色沿用簡報（深色＋磚橘＋米色）</span></div>
+      <div class="tl"><span class="tn">⑥ 驗收</span><span class="tx">每次改完都在瀏覽器實際驗證功能、圖片、無錯誤</span></div>
+      <div class="tl"><span class="tn">⑦ 卡住回報</span><span class="tx">工具有問題時如實說明、改用其他方式驗證</span></div>
+      <div class="tl"><span class="tn">⑧ 交付</span><span class="tx">發佈到 GitHub Pages，給手機網址</span></div>
+    </div>
+
+    <h4 style="font-weight:800;margin:36px 0 14px;font-size:18px">💡 用到的做法／技巧</h4>
+    <div class="grid g2">
+      <div class="card"><h3>先讀素材再動手</h3><p>讓 AI 讀懂你手上的簡報、文件比重講快；連 Keynote 讀不到，也先自動轉成 PDF 再讀。</p></div>
+      <div class="card"><h3>沿用既有風格</h3><p>網頁配色直接抄簡報，成品一致又省事。</p></div>
+      <div class="card"><h3>單一 HTML 檔</h3><p>不用後端、不裝環境，手機電腦都能開，最好維護。</p></div>
+      <div class="card"><h3>一次改一項</h3><p>想改的先列清單、一批批交代，AI 一次做完再一起驗收。</p></div>
+    </div>
+
+    <div class="note">💡 給老師朋友的三個提醒：<strong>① 先討論再動手</strong>（架構沒定就寫容易白做）<strong>② 一次改一項</strong>（改完馬上看）<strong>③ 發佈其實很簡單</strong>（一句「幫我發佈上網」就有手機打得開的網址）。</div>
   </div>
 </section>
 

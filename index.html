@@ -108,6 +108,9 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .step h4{font-size:16px;font-weight:800;margin-bottom:6px;color:#fff}
 .step p{font-size:13.5px;color:#a99e94}
 .step code{background:var(--bg-dark);color:#f0c9b3;padding:2px 7px;border-radius:6px;font-size:12.5px}
+a.dl{text-decoration:none}
+a.dl code{cursor:pointer;transition:.2s;text-decoration:underline;text-decoration-color:rgba(240,201,179,.4)}
+a.dl:hover code{background:var(--terra);color:#fff;text-decoration-color:#fff}
 .step .fee{display:inline-block;margin-top:8px;font-size:12.5px;color:var(--terra);background:rgba(200,114,79,.12);padding:4px 10px;border-radius:8px;font-weight:700}
 
 /* ===== 介面截圖 ===== */
@@ -318,8 +321,8 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
         <div><h3>Claude Code 桌面端</h3><div class="sub">下載 → 登入 → 選資料夾，就能開始</div></div>
       </div>
       <div class="steps">
-        <div class="step"><div class="n">1</div><h4>下載安裝</h4><p>到 <code>claude.com/download</code> 下載，拖進「應用程式」。</p></div>
-        <div class="step"><div class="n">2</div><h4>登入帳號</h4><p>打開 App，登入你的 Claude 帳號（到 <code>claude.ai</code> 註冊）。</p><span class="fee">💳 選擇適合你的流量費用方案</span></div>
+        <div class="step"><div class="n">1</div><h4>下載安裝</h4><p>到 <a class="dl" href="https://claude.com/download" target="_blank" rel="noopener"><code>claude.com/download</code></a> 下載，拖進「應用程式」。</p></div>
+        <div class="step"><div class="n">2</div><h4>登入帳號</h4><p>打開 App，登入你的 Claude 帳號（到 <a class="dl" href="https://claude.ai" target="_blank" rel="noopener"><code>claude.ai</code></a> 註冊）。</p><span class="fee">💳 選擇適合你的流量費用方案</span></div>
         <div class="step"><div class="n">3</div><h4>選資料夾</h4><p>選一個工作資料夾，直接用中文對話交辦任務。</p></div>
       </div>
 
@@ -382,7 +385,7 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
         <div><h3>Codex 桌面端</h3><div class="sub">OpenAI 的 AI Agent，用 ChatGPT 帳號登入即可</div></div>
       </div>
       <div class="steps">
-        <div class="step"><div class="n">1</div><h4>下載安裝</h4><p>到 <code>openai.com/codex</code> 下載 Mac App，拖進「應用程式」。</p></div>
+        <div class="step"><div class="n">1</div><h4>下載安裝</h4><p>到 <a class="dl" href="https://openai.com/codex" target="_blank" rel="noopener"><code>openai.com/codex</code></a> 下載 Mac App，拖進「應用程式」。</p></div>
         <div class="step"><div class="n">2</div><h4>登入授權</h4><p>用你的 OpenAI／ChatGPT 帳號完成登入授權。</p><span class="fee">💳 選擇適合你的流量費用方案</span></div>
         <div class="step"><div class="n">3</div><h4>建資料夾</h4><p>建立自己的工作資料夾，集中保存 Codex 生成的檔案。</p></div>
       </div>
@@ -391,10 +394,11 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
       <div class="shotwrap">
         <img class="shot" src="assets/codex-desktop.png" alt="Codex 桌面介面">
         <ul class="feat">
-          <li><b>側邊欄</b>：新增任務、專案、已排程、網站、Pull Request，點一下就開始</li>
-          <li><b>四種起手式</b>：探索程式碼、打造新功能、檢閱程式碼、修正問題</li>
-          <li><b>選擇專案</b>：先指定要動哪個資料夾，再交辦任務</li>
-          <li><b>輸入框</b>：直接用中文說要做什麼，「什麼都能做」</li>
+          <li><b>主打程式開發</b>：四張起手卡 —— 探索程式碼、打造新功能、檢閱程式碼、修正故障</li>
+          <li><b>已排程</b>：可以排定時間，讓 Codex 到點自動跑任務</li>
+          <li><b>Pull Request</b>：直接接手 GitHub 上的程式碼審查與變更</li>
+          <li><b>外掛程式・網站</b>：掛上外掛擴充能力，或接進要開發的網站</li>
+          <li><b>選專案＋選模型</b>：底部先指定資料夾，還能挑要用的模型（例如 5.5）</li>
         </ul>
       </div>
 
@@ -608,7 +612,7 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
   </div>
 </section>
 
-<footer>學習 AI，和未來一起成長 · 詹爸整理，歡迎自由分享</footer>
+<footer>學習 AI，和未來一起成長</footer>
 
 <script>
 function closeNav(){document.getElementById('nl').classList.remove('open')}

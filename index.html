@@ -315,6 +315,12 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
 .astep .abody h4 .bk{font-size:10px;font-weight:800;color:#fff;background:var(--terra);padding:2px 7px;border-radius:6px}
 .astep .abody p{font-size:13px;color:var(--ink-soft);margin-top:3px}
 
+/* ===== 案例縮圖與看成品按鈕 ===== */
+.case-thumb{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:10px;border:1px solid rgba(255,255,255,.12)}
+.viewbtn{display:inline-flex;align-items:center;gap:6px;background:var(--terra);color:#fff;font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:999px;text-decoration:none;transition:.2s;align-self:flex-start}
+.viewbtn:hover{background:var(--terra-d);transform:translateY(-1px)}
+.itab-hint{color:#a99e94;font-size:13.5px;margin:-12px 0 16px;display:flex;align-items:center;gap:6px}
+
 /* ===== 小複製指令 ===== */
 .cmd{display:flex;align-items:center;gap:8px;background:var(--bg-dark);border-radius:10px;padding:8px 8px 8px 14px;margin-top:12px}
 .cmd code{color:#f0c9b3;font-size:12.5px;flex:1;font-family:var(--font);line-height:1.5}
@@ -413,7 +419,7 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
       </div>
       <div class="evo-arrow reveal d1"><span>進化</span><b>→</b></div>
       <div class="evo-stage reveal d1">
-        <span class="es-tag">工作流</span>
+        <span class="es-tag">Workflow</span>
         <h3>工作流的 AI</h3>
         <div class="es-sub">照固定流程做事</div>
         <p>按預先設定好的流程一步步走，適合重複、固定步驟的任務。</p>
@@ -439,6 +445,7 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
     <h2 class="title">選一個開始裝：Claude 或 Codex</h2>
     <p class="lead">這是<strong style="color:#fff">兩套不同的軟體</strong>。不確定裝哪個？先點下面任一個看看，兩個都只要下載、登入、選資料夾三步，完全不用碰終端機和指令。</p>
 
+    <div class="itab-hint">👇 點下面卡片，切換看 Claude 或 Codex（選中會有橘框）</div>
     <div class="itabs">
       <div class="itab active" onclick="itab('claude')">
         <img src="assets/claude-logo.png" alt="Claude">
@@ -496,23 +503,11 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
       </div>
 
       <div class="subhead">Claude 的三種模式：一個工具，三種用法</div>
-      <p style="color:#a99e94;font-size:14.5px;margin-bottom:18px">依你要做的事，切換不同模式。點按鈕看看每一種在做什麼。</p>
-      <div class="tabs" id="modeTabs">
-        <button class="tab active" onclick="mode(0)">💬 Chat 聊天</button>
-        <button class="tab" onclick="mode(1)">📁 Cowork 任務</button>
-        <button class="tab" onclick="mode(2)">⌨️ Code 開發</button>
-      </div>
-      <div class="tabpane show" id="m0">
-        <h3>Chat 聊天</h3><p>純聊天，不碰你電腦裡的檔案：問問題、翻譯、寫文案、看圖片。</p>
-        <div class="egline">例：問問題、寫一篇文章、翻譯一段文字</div>
-      </div>
-      <div class="tabpane" id="m1">
-        <h3>Cowork 任務</h3><p>指定一個資料夾，AI 幫你讀寫檔案、整理資料、產報告、做定時任務。</p>
-        <div class="egline">例：每天做一份股票研究報告、整理一堆照片</div>
-      </div>
-      <div class="tabpane" id="m2">
-        <h3>Code 開發</h3><p>寫程式、跑指令、上架網站，做網頁和 App 給別人用。</p>
-        <div class="egline">例：做一個單字學習小工具、做刷題網頁給學生用</div>
+      <p style="color:#a99e94;font-size:14.5px;margin-bottom:18px">依你要做的事，用上方的 Chat／Cowork／Code 切換。三種用途一次看懂：</p>
+      <div class="grid g3">
+        <div class="card"><h3>💬 Chat 聊天</h3><p>純聊天，不碰你電腦裡的檔案：問問題、翻譯、寫文案、看圖片。</p><div style="margin-top:12px;font-size:13px;color:var(--terra);font-weight:700">例：問問題、寫文章、翻譯</div></div>
+        <div class="card"><h3>📁 Cowork 任務</h3><p>指定一個資料夾，AI 幫你讀寫檔案、整理資料、產報告、做定時任務。</p><div style="margin-top:12px;font-size:13px;color:var(--terra);font-weight:700">例：每天做股票報告、整理照片</div></div>
+        <div class="card"><h3>⌨️ Code 開發</h3><p>寫程式、跑指令、上架網站，做網頁和 App 給別人用。</p><div style="margin-top:12px;font-size:13px;color:var(--terra);font-weight:700">例：做單字工具、做刷題網頁</div></div>
       </div>
     </div>
 
@@ -666,7 +661,7 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
 <section id="agent" class="tint">
   <div class="wrap">
     <div class="eyebrow">05 · 進階玩法</div>
-    <h2 class="title">做一個自己的 AI Agent</h2>
+    <h2 class="title">訓練出自己的 AI Agent</h2>
     <p class="lead">學會寫 MD 之後，可以更進一步：把「該做什麼、不該做什麼、怎樣算完成」全寫進 MD，然後一句指令，AI 就自動跑到成品交付 —— 這就是你自己的 AI Agent。</p>
 
     <div class="flow3">
@@ -708,6 +703,7 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
       <div class="dc"><div class="di">📱</div><h4>推到手機</h4><p>用 ChatGPT／Claude 的跨裝置同步，電腦端做好的報告自動出現在手機上（像每日股票報告）。</p></div>
     </div>
     <div class="note">💡 一句話記住：<strong>MD 寫得越完整，AI 越像一個靠得住的員工</strong> —— 交辦一次，它自己跑完、自己檢查、有問題才回頭找你。</div>
+    <div class="note" style="border-left-color:#8a7a6d;margin-top:12px">🔌 <strong>進階還能擴充</strong>：熟了以後，Claude／Codex 還能裝 <strong>Skills（技能）</strong>、<strong>外掛（Plugins）</strong>、接 <strong>MCP（外部工具）</strong>，讓能力更強。新手先不用管，想深入再研究。</div>
   </div>
 </section>
 
@@ -719,16 +715,18 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
     <p class="lead">下面是用 Claude 和 Codex 協作做出來的實際成果，都是不懂程式也能完成的小工具。</p>
     <div class="grid g2">
       <div class="case">
+        <img class="case-thumb" src="assets/case-vocab.png" alt="單字學習複習程式畫面">
         <h3>📚 單字學習複習程式</h3>
         <p>用 Claude 和 Codex 協作，做一個給孩子背單字、複習的小工具。手機電腦都能開。</p>
-        <a href="https://jackchan1973.github.io/vocab-app/" target="_blank">jackchan1973.github.io/vocab-app ↗</a>
+        <a class="viewbtn" href="https://jackchan1973.github.io/vocab-app/" target="_blank" rel="noopener">看成品 ↗</a>
         <div class="cmd"><code>幫我做一個 XX 單字的複習網頁，能測驗、自動對答案，手機也能開。</code><button data-copy="幫我做一個 XX 單字的複習網頁，能測驗、自動對答案，手機也能開。" onclick="copyText(this)">複製</button></div>
       </div>
       <div class="case">
+        <img class="case-thumb" src="assets/case-gsat.png" alt="歷屆考題刷題工具畫面">
         <h3>📝 歷屆考題刷題工具</h3>
         <p>只要有官方 PDF 或圖片，就能做出可刷題、自動對答案的網頁。答題卡、判分、錯題紀錄都有。</p>
         <p style="color:var(--terra);font-weight:700">忠於官方原檔，做完人工核對</p>
-        <a href="https://jackchan1973.github.io/gsat-exam/" target="_blank" rel="noopener">jackchan1973.github.io/gsat-exam ↗</a>
+        <a class="viewbtn" href="https://jackchan1973.github.io/gsat-exam/" target="_blank" rel="noopener">看成品 ↗</a>
         <div class="cmd"><code>我有官方考題 PDF，幫我做成可以刷題、自動對答案的網頁，答案以官方為準。</code><button data-copy="我有官方考題 PDF，幫我做成可以刷題、自動對答案的網頁，答案以官方為準。" onclick="copyText(this)">複製</button></div>
       </div>
     </div>
@@ -765,17 +763,17 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
     </div>
 
     <h4 style="font-weight:800;margin:0 0 14px;font-size:18px">📦 網頁內容包括哪些</h4>
-    <table class="spectable">
-      <tr><td>什麼是 AI</td><td>三層 AI：LLM（大語言模型）／RAG（工作流）／Agent（會做決定）</td></tr>
-      <tr><td>AI 安裝</td><td>Claude、Codex 兩個桌面端分頁教學，含權限／顯示模式設定</td></tr>
-      <tr><td>MD 文件</td><td>CLAUDE.md（Claude）vs AGENTS.md（Codex）、全局 vs 專案記憶</td></tr>
-      <tr><td>範本產生器</td><td>填空即時生成專屬 MD、一鍵複製</td></tr>
-      <tr><td>做自己的 Agent</td><td>一句指令自動跑到交付的 8 步配方（含 3 個安全煞車）</td></tr>
-      <tr><td>案例分享</td><td>單字複習程式、刷題工具（都有線上網址）＋回家作業</td></tr>
-      <tr><td>製作案例</td><td>就是這一段：這個網頁是怎麼做出來的</td></tr>
-    </table>
+    <div class="grid g2">
+      <div class="card" style="padding:16px 18px"><h3 style="font-size:15px;margin-bottom:5px">什麼是 AI</h3><p style="font-size:13px">三層 AI：LLM（大語言模型）／Workflow（工作流）／Agent（會做決定）</p></div>
+      <div class="card" style="padding:16px 18px"><h3 style="font-size:15px;margin-bottom:5px">AI 安裝</h3><p style="font-size:13px">Claude、Codex 兩個桌面端分頁教學，含權限／顯示模式設定</p></div>
+      <div class="card" style="padding:16px 18px"><h3 style="font-size:15px;margin-bottom:5px">MD 文件</h3><p style="font-size:13px">CLAUDE.md（Claude）vs AGENTS.md（Codex）、全局 vs 專案記憶</p></div>
+      <div class="card" style="padding:16px 18px"><h3 style="font-size:15px;margin-bottom:5px">範本產生器</h3><p style="font-size:13px">填空即時生成專屬 MD、一鍵複製</p></div>
+      <div class="card" style="padding:16px 18px"><h3 style="font-size:15px;margin-bottom:5px">訓練自己的 Agent</h3><p style="font-size:13px">一句指令自動跑到交付的 8 步配方（含 3 個安全煞車）</p></div>
+      <div class="card" style="padding:16px 18px"><h3 style="font-size:15px;margin-bottom:5px">案例分享</h3><p style="font-size:13px">單字複習程式、刷題工具（都有線上網址）＋回家作業</p></div>
+      <div class="card" style="padding:16px 18px"><h3 style="font-size:15px;margin-bottom:5px">製作案例</h3><p style="font-size:13px">就是這一段：這個網頁是怎麼做出來的</p></div>
+    </div>
 
-    <h4 style="font-weight:800;margin:36px 0 14px;font-size:18px">🛠 開發流程（正好走了一遍「做自己的 Agent」8 步）</h4>
+    <h4 style="font-weight:800;margin:36px 0 14px;font-size:18px">🛠 開發流程（正好走了一遍「訓練自己的 Agent」8 步）</h4>
     <div class="timeline">
       <div class="tl"><span class="tn">① 討論需求</span><span class="tx">先定主題「學習 AI，和未來一起成長」</span></div>
       <div class="tl"><span class="tn">② 制定範圍</span><span class="tx">只做 Claude／Codex 桌面端，砍掉終端機版（先教最簡單的）</span></div>

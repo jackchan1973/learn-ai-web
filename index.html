@@ -248,7 +248,7 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
 .spectable tr:last-child td{border-bottom:none}
 .spectable td:first-child{font-weight:800;color:var(--ink);width:120px}
 .spectable td:last-child{color:var(--ink-soft)}
-.timeline{display:grid;gap:10px}
+.timeline{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .tl{display:flex;gap:14px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px;align-items:flex-start}
 .tl .tn{color:var(--terra);font-weight:800;font-size:15px;white-space:nowrap;min-width:80px}
 .tl .tx{font-size:14px;color:var(--ink)}
@@ -304,11 +304,10 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
 .sd .do{font-size:14px;color:var(--ink-soft);line-height:1.6}
 .sd .do b{color:var(--ink)}
 
-/* ===== 做 Agent 流程圖 ===== */
-.aflow{max-width:760px}
-.astep{display:flex;gap:16px;position:relative;padding-bottom:14px}
-.astep:not(:last-child)::before{content:"";position:absolute;left:19px;top:42px;bottom:-2px;width:2px;background:var(--line)}
-.astep .an{width:40px;height:40px;border-radius:50%;background:#fff;border:2px solid var(--line);color:var(--ink);font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1}
+/* ===== 做 Agent 流程圖（左右兩欄）===== */
+.aflow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.astep{display:flex;gap:14px;align-items:flex-start}
+.astep .an{width:40px;height:40px;border-radius:50%;background:#fff;border:2px solid var(--line);color:var(--ink);font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .astep.brake .an{background:var(--terra);border-color:var(--terra);color:#fff}
 .astep .abody{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 16px;flex:1}
 .astep.brake .abody{border-color:var(--terra);box-shadow:0 6px 18px rgba(200,114,79,.1)}
@@ -325,7 +324,7 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:820px){
-  .g3,.g2,.steps,.compare,.gen,.shotwrap,.md-compare,.evo,.flow3{grid-template-columns:1fr}
+  .g3,.g2,.steps,.compare,.gen,.shotwrap,.md-compare,.evo,.flow3,.aflow,.timeline{grid-template-columns:1fr}
   .recipe{grid-template-columns:1fr 1fr}
   .evo-arrow b,.flow3 .arr{transform:rotate(90deg)}
   .navlinks{position:fixed;top:60px;left:0;right:0;background:var(--bg-dark);flex-direction:column;padding:10px 16px;gap:2px;display:none;border-bottom:1px solid rgba(255,255,255,.1)}
@@ -385,14 +384,14 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
         <div class="do"><b>命名整齊、分好類的照片</b>，一次搞定幾百張</div>
       </div>
       <div class="sd reveal d2">
-        <div class="say">🗣️「幫我做今天的股票報告」</div>
+        <div class="say">🗣️「幫我核對這兩份名單哪裡不一樣」</div>
         <div class="sdarr">↓ AI 幫你做出</div>
-        <div class="do"><b>一頁手機看的圖表報告</b>，還能自動送到手機</div>
+        <div class="do"><b>一項項比對、標出所有差異</b>，重複、大量的核對都交給它</div>
       </div>
       <div class="sd reveal d3">
-        <div class="say">🗣️「把這份 PDF 做成刷題網頁」</div>
+        <div class="say">🗣️「把這份文件／影片整理成重點簡報」</div>
         <div class="sdarr">↓ AI 幫你做出</div>
-        <div class="do"><b>學生能線上練習、自動判分的題庫</b></div>
+        <div class="do"><b>一份重點整理的 PPT 或網頁</b>，文件、網頁、影片都能讀</div>
       </div>
     </div>
   </div>
@@ -523,6 +522,7 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
         <img src="assets/codex-logo.png" alt="Codex">
         <div><h3>Codex 桌面端</h3><div class="sub">OpenAI 的 AI Agent，用 ChatGPT 帳號登入即可</div></div>
       </div>
+      <div class="note" style="margin-bottom:22px;margin-top:0">💡 最新版 <strong>Codex 已整合進 ChatGPT</strong>：打開 App 後，點畫面<strong>左上角的下拉選單</strong>，在「ChatGPT 工作 ↔ Codex」之間切換，選 <strong>Codex（建置、偵錯並發布）</strong>就進入開發模式。</div>
       <div class="steps">
         <div class="step"><div class="n">1</div><h4>下載安裝</h4><p>到 <a class="dl" href="https://openai.com/codex" target="_blank" rel="noopener"><code>openai.com/codex</code></a> 下載 Mac App，拖進「應用程式」。</p></div>
         <div class="step"><div class="n">2</div><h4>登入授權</h4><p>用你的 OpenAI／ChatGPT 帳號完成登入授權。</p><span class="fee">💳 選適合的付費方案（新手選最基本的就夠）</span></div>
@@ -545,6 +545,7 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
       <div class="note" style="margin-top:26px">💡 小提醒：Codex 可以跟 ChatGPT 帳號協作，也能透過手機上的 ChatGPT 來控制它。裝好後，先對它說一句「你好，你能做什麼？」，收到正常回覆就代表可以用了。</div>
     </div>
 
+    <div class="note">📱 <strong>手機也能用</strong>：Claude 和 Codex 都有官方 iOS App，手機裝好後，電腦上做的工作可以<strong>手機／電腦同步、接力協作</strong>（例如電腦跑任務、出門用手機看進度或繼續交辦）。</div>
     <div class="warn">⚠️ 本頁只教<strong>桌面端</strong>。終端機版本（指令安裝）等你熟了再研究。</div>
   </div>
 </section>
@@ -602,7 +603,7 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
         <div class="badge">案</div>
         <h3>專案記憶</h3>
         <p>只對某個專案有效；寫這個專案的特別規則（例如股票研究）。注意別跟全局的衝突。</p>
-        <img class="shot" src="assets/md-project.png" alt="專案 MD 範例" style="margin-top:14px;box-shadow:0 6px 20px rgba(0,0,0,.12)">
+        <img class="shot" src="assets/md-project.png" alt="專案 MD 範例" style="margin:14px auto 0;box-shadow:0 6px 20px rgba(0,0,0,.12);max-height:300px;width:auto">
       </div>
     </div>
     <div class="note">💡 小訣竅：寫的時候記住四點 —— ① 控制在 200 行內 ② 重要規則放最前面 ③ 用檔案引用、別貼整段程式碼 ④ 越精簡，AI 越聽話。</div>
@@ -622,7 +623,7 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
           <button onclick="setTool('codex')"><img src="assets/codex-logo.png">給 Codex（AGENTS.md）</button>
         </div>
         <label>你的稱呼</label>
-        <input id="f_name" value="詹爸" oninput="build()">
+        <input id="f_name" value="小明" placeholder="例：小明、王老師" oninput="build()">
         <label>身份 / 職業（可自由輸入）</label>
         <input id="f_job" list="jobList" value="退休" placeholder="例：老師、退休、上班族、學生" oninput="build()">
         <datalist id="jobList"><option>退休</option><option>學生</option><option>上班族</option><option>老師</option><option>自由業</option></datalist>
@@ -691,12 +692,12 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
 
     <div class="agent-case">
       <div class="ac-tag">真實案例 · 高三學測刷題工具</div>
-      <h3>詹爸的題庫 Agent 怎麼跑</h3>
+      <h3>我的題庫 Agent 怎麼跑</h3>
       <div class="ac-flow">你說：<b>「幫我做 115 國文題庫」</b>
    ↓  AI 讀 MD 規則（鐵律：不改來源、不猜答案）
    ↓  抽官方 PDF 題目 → 做成互動題庫網頁
    ↓  自檢：畫面正常、判分正確、手機小螢幕不跑版、答案逐題核對
-   ↓  有疑義的題 → 標記給詹爸複核（不亂猜）
+   ↓  有疑義的題 → 標記給你複核（不亂猜）
    ↓  驗收通過 → <b>自動發佈上線</b>
 成品：線上刷題網頁，學生手機就能練習 ✅</div>
     </div>

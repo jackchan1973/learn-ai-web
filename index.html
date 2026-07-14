@@ -254,9 +254,42 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
 .tl .tx{font-size:14px;color:var(--ink)}
 .tl .tx b{color:var(--ink)}
 
+/* ===== 首頁：能做什麼（分類能力卡）===== */
+.cando-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.cando{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;transition:transform .25s,box-shadow .25s,border-color .25s}
+.cando:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(0,0,0,.09);border-color:var(--terra)}
+.cando .ci{width:54px;height:54px;border-radius:15px;background:var(--cream2);display:flex;align-items:center;justify-content:center;font-size:27px;margin-bottom:14px;transition:.25s}
+.cando:hover .ci{background:rgba(200,114,79,.15);transform:scale(1.06)}
+.cando h3{font-size:17px;font-weight:800;margin-bottom:12px}
+.cando .tags{display:flex;flex-wrap:wrap;gap:7px}
+.cando .tags span{font-size:12.5px;background:var(--cream2);color:var(--ink-soft);padding:5px 11px;border-radius:999px;transition:.2s}
+.cando:hover .tags span{background:rgba(200,114,79,.1);color:var(--terra-d)}
+
+/* ===== 三種 AI：進化流程 ===== */
+.evo{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px;align-items:stretch}
+.evo-stage{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column}
+.evo-stage.hot{border:2px solid var(--terra);background:#fff;box-shadow:0 10px 30px rgba(200,114,79,.15)}
+.evo-stage .es-tag{align-self:flex-start;font-size:12px;font-weight:800;color:var(--terra);background:rgba(200,114,79,.12);padding:4px 12px;border-radius:8px;margin-bottom:12px}
+.evo-stage h3{font-size:19px;font-weight:800;margin-bottom:8px}
+.evo-stage .es-sub{font-size:13px;color:var(--terra);font-weight:700;margin-bottom:8px}
+.evo-stage p{font-size:14px;color:var(--ink-soft);flex:1}
+.evo-stage .es-eg{margin-top:14px;font-size:12.5px;color:var(--ink);background:var(--cream2);padding:8px 12px;border-radius:8px}
+.evo-stage.hot .es-eg{background:rgba(200,114,79,.12);color:var(--terra-d);font-weight:700}
+.evo-arrow{display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--terra);font-weight:800}
+.evo-arrow span{font-size:11px;letter-spacing:.15em;margin-bottom:2px}
+.evo-arrow b{font-size:24px;line-height:1;display:inline-block}
+
+/* ===== 進場動畫 ===== */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
 /* ===== RESPONSIVE ===== */
 @media(max-width:820px){
-  .g3,.g2,.steps,.compare,.gen,.shotwrap,.md-compare{grid-template-columns:1fr}
+  .g3,.g2,.steps,.compare,.gen,.shotwrap,.md-compare,.evo,.flow3{grid-template-columns:1fr}
+  .recipe{grid-template-columns:1fr 1fr}
+  .evo-arrow b,.flow3 .arr{transform:rotate(90deg)}
   .navlinks{position:fixed;top:60px;left:0;right:0;background:var(--bg-dark);flex-direction:column;padding:10px 16px;gap:2px;display:none;border-bottom:1px solid rgba(255,255,255,.1)}
   .navlinks.open{display:flex}
   .navtoggle{display:block}
@@ -296,6 +329,22 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
   </div>
 </header>
 
+<!-- 首頁：Claude／Codex 能做什麼 -->
+<section id="can">
+  <div class="wrap">
+    <div class="eyebrow">Claude ・ Codex</div>
+    <h2 class="title">它們能幫你做什麼？</h2>
+    <p class="lead">不只是聊天 —— 從寫程式到做設計、寫文案、分析資料，一句話交辦，它就動手幫你完成。</p>
+    <div class="cando-grid">
+      <div class="cando reveal"><div class="ci">💻</div><h3>軟體開發</h3><div class="tags"><span>寫程式</span><span>除錯</span><span>測試</span><span>程式審查</span><span>優化</span><span>技術文件</span></div></div>
+      <div class="cando reveal d1"><div class="ci">✍️</div><h3>內容創作</h3><div class="tags"><span>寫文章</span><span>翻譯</span><span>潤稿</span><span>行銷文案</span><span>教學教材</span></div></div>
+      <div class="cando reveal d2"><div class="ci">🎨</div><h3>設計</h3><div class="tags"><span>網頁設計</span><span>版面</span><span>元件</span><span>響應式</span><span>簡報</span></div></div>
+      <div class="cando reveal d3"><div class="ci">📊</div><h3>資料分析</h3><div class="tags"><span>報表</span><span>圖表</span><span>找規律</span><span>視覺化</span><span>整理資料</span></div></div>
+      <div class="cando reveal d4"><div class="ci">🌿</div><h3>生活任務</h3><div class="tags"><span>整理照片</span><span>問答</span><span>看圖</span><span>規劃行程</span><span>股票研究</span></div></div>
+    </div>
+  </div>
+</section>
+
 <!-- 首頁快速進入 -->
 <section class="qnav">
   <div class="wrap">
@@ -319,18 +368,29 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
     <div class="eyebrow">01 · 認識 AI</div>
     <h2 class="title">什麼是 AI？先分清楚三種</h2>
     <p class="lead">同樣叫「AI」，能力差很多。點開每一層看看差別 —— 我們要學的是最厲害的第三種：會自己動手做事的 AI Agent。</p>
-    <div class="ai-layers">
-      <div class="layer" onclick="this.classList.toggle('open')">
-        <div class="lh"><span class="tag">LLM</span><span class="lt">大語言模型</span><span class="chev">▾</span></div>
-        <div class="body">有強大的知識庫，能回答絕大部分問題，但只會「說」，不會動手。<br><span class="ex">代表：ChatGPT · Gemini · DeepSeek</span></div>
+    <div class="evo">
+      <div class="evo-stage reveal">
+        <span class="es-tag">LLM</span>
+        <h3>大語言模型</h3>
+        <div class="es-sub">一問一答</div>
+        <p>你問它答，有強大的知識庫，但只會「說」，不會動手。</p>
+        <div class="es-eg">ChatGPT · Gemini · DeepSeek</div>
       </div>
-      <div class="layer" onclick="this.classList.toggle('open')">
-        <div class="lh"><span class="tag">RAG</span><span class="lt">工作流的 AI</span><span class="chev">▾</span></div>
-        <div class="body">按照預先設定好的規則路徑來工作，適合固定流程的任務。<br><span class="ex">代表：各種客服機器人、企業知識庫問答</span></div>
+      <div class="evo-arrow reveal d1"><span>進化</span><b>→</b></div>
+      <div class="evo-stage reveal d1">
+        <span class="es-tag">RAG</span>
+        <h3>工作流的 AI</h3>
+        <div class="es-sub">固定的工作流程</div>
+        <p>照預先設定好的流程路徑走，適合固定步驟的任務。</p>
+        <div class="es-eg">客服機器人 · 企業知識庫問答</div>
       </div>
-      <div class="layer open" onclick="this.classList.toggle('open')">
-        <div class="lh"><span class="tag">Agent</span><span class="lt">AI Agent（會做決定）</span><span class="chev">▾</span></div>
-        <div class="body">它會自動完成你交付的任務。簡單說：做決定的人，從你變成了 AI。<br><span class="ex">代表：Claude Code · Codex ← 我們要學的兩個</span></div>
+      <div class="evo-arrow reveal d2"><span>進化</span><b>→</b></div>
+      <div class="evo-stage hot reveal d2">
+        <span class="es-tag">Agent</span>
+        <h3>AI Agent</h3>
+        <div class="es-sub">會推理 ＋ 會執行</div>
+        <p>自動完成你交付的任務。做決定的人，從你變成了 AI。</p>
+        <div class="es-eg">Claude Code · Codex ← 我們要學的</div>
       </div>
     </div>
     <div class="note dk" style="background:var(--cream2);color:var(--ink-soft);border-left:3px solid var(--terra);padding:12px 16px;border-radius:0 10px 10px 0;margin-top:24px">💡 接下來要裝的 <strong style="color:var(--ink)">Claude Code</strong> 和 <strong style="color:var(--ink)">Codex</strong> 都屬於第三種。它們是<strong style="color:var(--ink)">兩套不同的軟體</strong>，下一段會分開介紹 —— 你可以只裝其中一個，也可以兩個都裝。</div>
@@ -768,6 +828,15 @@ function copyMd(){
   });
 }
 build();
+// 進場動畫：捲到就淡入
+(function(){
+  const els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return;}
+  const io=new IntersectionObserver((ent)=>{
+    ent.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.15});
+  els.forEach(e=>io.observe(e));
+})();
 </script>
 </body>
 </html>

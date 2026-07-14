@@ -227,7 +227,7 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
 
 .note{margin-top:16px;font-size:13.5px;color:var(--ink-soft);background:var(--cream2);border-left:3px solid var(--terra);padding:12px 16px;border-radius:0 10px 10px 0}
 .dark .note{background:var(--bg-dark2);color:#a99e94}
-.warn{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#f0c9b3;background:rgba(200,114,79,.14);padding:8px 14px;border-radius:10px;margin-top:14px}
+.warn{display:block;font-size:13px;font-weight:700;color:#f0c9b3;background:rgba(200,114,79,.14);padding:10px 16px;border-radius:10px;margin-top:14px;line-height:1.7}
 .subhead{color:#fff;font-size:20px;font-weight:800;margin:40px 0 6px}
 .subhead.dk{color:var(--ink)}
 
@@ -317,8 +317,8 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
 
 /* ===== 案例縮圖與看成品按鈕 ===== */
 .case-thumb{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:10px;border:1px solid rgba(255,255,255,.12)}
-.viewbtn{display:inline-flex;align-items:center;gap:6px;background:var(--terra);color:#fff;font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:999px;text-decoration:none;transition:.2s;align-self:flex-start}
-.viewbtn:hover{background:var(--terra-d);transform:translateY(-1px)}
+.viewbtn,.case a.viewbtn{display:inline-flex;align-items:center;gap:6px;background:var(--terra);color:#fff;font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:999px;text-decoration:none;transition:.2s;align-self:flex-start}
+.viewbtn:hover,.case a.viewbtn:hover{background:var(--terra-d);color:#fff;transform:translateY(-1px)}
 .itab-hint{color:#a99e94;font-size:13.5px;margin:-12px 0 16px;display:flex;align-items:center;gap:6px}
 
 /* ===== 小複製指令 ===== */

@@ -254,6 +254,16 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
 .tl .tx{font-size:14px;color:var(--ink)}
 .tl .tx b{color:var(--ink)}
 
+/* ===== 首頁：能力星系圖 ===== */
+.constel{max-width:860px;margin:12px auto 0}
+.constel svg{width:100%;height:auto;display:block;overflow:visible}
+.constel text{paint-order:stroke;stroke:var(--cream);stroke-width:6px;stroke-linejoin:round;dominant-baseline:middle;text-anchor:middle}
+.constel .cat{font-size:30px;font-weight:800;fill:var(--ink)}
+.constel .sub{font-size:21px;fill:var(--ink-soft)}
+.constel .clbl{font-size:23px;font-weight:800;fill:var(--ink)}
+.constel line{stroke:#d9cfc3;stroke-width:1.3}
+.constel .halo{fill:rgba(200,114,79,.06)}
+
 /* ===== 首頁：能做什麼（分類能力卡）===== */
 .cando-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
 .cando{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;transition:transform .25s,box-shadow .25s,border-color .25s}
@@ -335,29 +345,47 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
     <div class="eyebrow">Claude ・ Codex</div>
     <h2 class="title">它們能幫你做什麼？</h2>
     <p class="lead">不只是聊天 —— 從寫程式到做設計、寫文案、分析資料，一句話交辦，它就動手幫你完成。</p>
-    <div class="cando-grid">
-      <div class="cando reveal"><div class="ci">💻</div><h3>軟體開發</h3><div class="tags"><span>寫程式</span><span>除錯</span><span>測試</span><span>程式審查</span><span>優化</span><span>技術文件</span></div></div>
-      <div class="cando reveal d1"><div class="ci">✍️</div><h3>內容創作</h3><div class="tags"><span>寫文章</span><span>翻譯</span><span>潤稿</span><span>行銷文案</span><span>教學教材</span></div></div>
-      <div class="cando reveal d2"><div class="ci">🎨</div><h3>設計</h3><div class="tags"><span>網頁設計</span><span>版面</span><span>元件</span><span>響應式</span><span>簡報</span></div></div>
-      <div class="cando reveal d3"><div class="ci">📊</div><h3>資料分析</h3><div class="tags"><span>報表</span><span>圖表</span><span>找規律</span><span>視覺化</span><span>整理資料</span></div></div>
-      <div class="cando reveal d4"><div class="ci">🌿</div><h3>生活任務</h3><div class="tags"><span>整理照片</span><span>問答</span><span>看圖</span><span>規劃行程</span><span>股票研究</span></div></div>
-    </div>
-  </div>
-</section>
+    <div class="constel reveal">
+      <svg viewBox="0 0 900 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Claude 與 Codex 能做什麼的能力星系圖">
+        <circle cx="450" cy="360" r="130" class="halo"/>
+        <!-- 中心 → 五大類 -->
+        <line x1="450" y1="360" x2="450" y2="170"/>
+        <line x1="450" y1="360" x2="638" y2="300"/>
+        <line x1="450" y1="360" x2="568" y2="520"/>
+        <line x1="450" y1="360" x2="332" y2="520"/>
+        <line x1="450" y1="360" x2="262" y2="300"/>
+        <!-- 設計 → 子項 -->
+        <line x1="450" y1="170" x2="362" y2="40"/><line x1="450" y1="170" x2="450" y2="26"/><line x1="450" y1="170" x2="538" y2="40"/>
+        <!-- 軟體開發 → 子項 -->
+        <line x1="638" y1="300" x2="732" y2="180"/><line x1="638" y1="300" x2="772" y2="258"/><line x1="638" y1="300" x2="788" y2="342"/>
+        <!-- 資料分析 → 子項 -->
+        <line x1="568" y1="520" x2="712" y2="572"/><line x1="568" y1="520" x2="650" y2="632"/><line x1="568" y1="520" x2="574" y2="676"/>
+        <!-- 生活任務 → 子項 -->
+        <line x1="332" y1="520" x2="326" y2="676"/><line x1="332" y1="520" x2="250" y2="632"/><line x1="332" y1="520" x2="188" y2="572"/>
+        <!-- 內容創作 → 子項 -->
+        <line x1="262" y1="300" x2="112" y2="342"/><line x1="262" y1="300" x2="128" y2="258"/><line x1="262" y1="300" x2="168" y2="180"/>
 
-<!-- 首頁快速進入 -->
-<section class="qnav">
-  <div class="wrap">
-    <h3>想看哪一段？直接點進去</h3>
-    <p>整個內容在同一頁，用下面的按鈕跳到你想看的區塊。</p>
-    <div class="qgrid">
-      <a class="qbtn" href="#ai"><span class="qn">1</span><span><span class="qt">什麼是 AI</span><span class="qd">三層 AI 分清楚</span></span></a>
-      <a class="qbtn" href="#install"><span class="qn">2</span><span><span class="qt">AI 安裝</span><span class="qd">Claude／Codex 桌面端</span></span></a>
-      <a class="qbtn" href="#md"><span class="qn">3</span><span><span class="qt">MD 文件</span><span class="qd">讓 AI 更懂你</span></span></a>
-      <a class="qbtn" href="#gen"><span class="qn">4</span><span><span class="qt">範本製作</span><span class="qd">一鍵生成 MD</span></span></a>
-      <a class="qbtn" href="#agent"><span class="qn">5</span><span><span class="qt">做 Agent</span><span class="qd">一句指令自動跑</span></span></a>
-      <a class="qbtn" href="#case"><span class="qn">6</span><span><span class="qt">案例分享</span><span class="qd">實際成品連結</span></span></a>
-      <a class="qbtn" href="#story"><span class="qn">7</span><span><span class="qt">製作案例</span><span class="qd">這頁怎麼做出來的</span></span></a>
+        <!-- 中心 logo -->
+        <rect x="386" y="332" width="58" height="58" rx="14" fill="#fff" stroke="#e2d8cc"/>
+        <image href="assets/claude-logo.png" x="393" y="339" width="44" height="44"/>
+        <rect x="456" y="332" width="58" height="58" rx="14" fill="#fff" stroke="#e2d8cc"/>
+        <image href="assets/codex-logo.png" x="463" y="339" width="44" height="44"/>
+        <text x="450" y="418" class="clbl">Claude ＋ Codex</text>
+
+        <!-- 五大類 -->
+        <text x="450" y="170" class="cat">設計</text>
+        <text x="662" y="300" class="cat">軟體開發</text>
+        <text x="568" y="520" class="cat">資料分析</text>
+        <text x="332" y="520" class="cat">生活任務</text>
+        <text x="238" y="300" class="cat">內容創作</text>
+
+        <!-- 子項 -->
+        <text x="362" y="40" class="sub">網頁設計</text><text x="450" y="26" class="sub">版面</text><text x="538" y="40" class="sub">響應式</text>
+        <text x="740" y="178" class="sub">寫程式</text><text x="778" y="258" class="sub">除錯</text><text x="800" y="342" class="sub">測試</text>
+        <text x="720" y="574" class="sub">報表</text><text x="652" y="636" class="sub">圖表</text><text x="574" y="680" class="sub">視覺化</text>
+        <text x="326" y="680" class="sub">整理照片</text><text x="250" y="636" class="sub">股票研究</text><text x="176" y="574" class="sub">規劃行程</text>
+        <text x="96" y="342" class="sub">寫文章</text><text x="122" y="258" class="sub">翻譯</text><text x="160" y="178" class="sub">教學教材</text>
+      </svg>
     </div>
   </div>
 </section>
@@ -367,7 +395,7 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
   <div class="wrap">
     <div class="eyebrow">01 · 認識 AI</div>
     <h2 class="title">什麼是 AI？先分清楚三種</h2>
-    <p class="lead">同樣叫「AI」，能力差很多。點開每一層看看差別 —— 我們要學的是最厲害的第三種：會自己動手做事的 AI Agent。</p>
+    <p class="lead">同樣叫「AI」，能力差很多。從左到右一路進化 —— 我們要學的是最厲害的第三種：會自己動手做事的 AI Agent。</p>
     <div class="evo">
       <div class="evo-stage reveal">
         <span class="es-tag">LLM</span>

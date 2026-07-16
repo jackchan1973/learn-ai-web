@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>學習 AI，和未來一起成長</title>
+<title>學習 AI 和未來一起成長</title>
 <style>
 :root{
   --bg-dark:#1c1815;
@@ -315,6 +315,19 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
 .astep .abody h4 .bk{font-size:10px;font-weight:800;color:#fff;background:var(--terra);padding:2px 7px;border-radius:6px}
 .astep .abody p{font-size:13px;color:var(--ink-soft);margin-top:3px}
 
+/* ===== 實戰流程 ===== */
+.flow-head{display:flex;align-items:center;gap:12px;margin:34px 0 16px;flex-wrap:wrap}
+.flow-head img{width:38px;height:38px;border-radius:9px;object-fit:contain;background:#fff;padding:4px;border:1px solid var(--line)}
+.flow-head h3{font-size:19px;font-weight:800}
+.flow-head .ftag{font-size:12px;font-weight:800;color:#fff;background:var(--terra);padding:3px 11px;border-radius:7px}
+.hflow{display:grid;gap:12px}
+.hstep{display:flex;gap:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.hstep .hn{width:34px;height:34px;border-radius:50%;background:var(--terra);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hstep .hb{flex:1;min-width:0}
+.hstep h4{font-size:15px;font-weight:800;margin-bottom:3px}
+.hstep p{font-size:13.5px;color:var(--ink-soft)}
+.goal{display:flex;align-items:center;gap:10px;background:rgba(200,114,79,.1);border:1px dashed var(--terra);border-radius:12px;padding:14px 18px;margin-top:12px;font-weight:800;color:var(--terra-d);font-size:14.5px}
+
 /* ===== 案例縮圖與看成品按鈕 ===== */
 .case-thumb{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:10px;border:1px solid rgba(255,255,255,.12)}
 .viewbtn,.case a.viewbtn{display:inline-flex;align-items:center;gap:6px;background:var(--terra);color:#fff;font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:999px;text-decoration:none;transition:.2s;align-self:flex-start}
@@ -356,7 +369,7 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
       <a href="#gen" onclick="closeNav()">範本製作</a>
       <a href="#agent" onclick="closeNav()">做 Agent</a>
       <a href="#case" onclick="closeNav()">案例分享</a>
-      <a href="#story" onclick="closeNav()">製作案例</a>
+      <a href="#story" onclick="closeNav()">實戰練習</a>
     </div>
   </div>
 </nav>
@@ -365,7 +378,7 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
 <header class="hero">
   <div class="ring"></div><div class="ball"></div>
   <div class="wrap">
-    <h1>學習 AI，<br><span class="g">和未來一起成長</span></h1>
+    <h1>學習 AI<br><span class="g">和未來一起成長</span></h1>
     <p class="sub">不用懂程式，用中文把想做的事講清楚，AI 就能幫你完成。這一頁帶你認識 AI、裝好工具、寫下屬於自己的規則。</p>
     <a href="#ai" class="cta">開始了解 →</a>
     <div class="scroll-tip">↓ 往下滑，一步步來</div>
@@ -752,48 +765,54 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
 <!-- 製作案例 -->
 <section id="story" class="tint">
   <div class="wrap">
-    <div class="eyebrow">07 · 幕後花絮</div>
-    <h2 class="title">這個網頁是怎麼做出來的</h2>
-    <p class="lead">這一頁本身就是一個「用 AI 開發」的活教材 —— 手上只有幾份簡報，怎麼一步步變成你現在看到的互動網頁。</p>
+    <div class="eyebrow">07 · 實戰練習</div>
+    <h2 class="title">跟著做，做出你的成品</h2>
+    <p class="lead">打開你自己電腦的 Claude 或 Codex，照下面兩條流程一步步做，就能親手產出一個成品。每一步都有可複製的指令，貼進去就能用。</p>
 
-    <div class="card" style="background:var(--bg-dark);border:none;margin-bottom:32px">
-      <h3 style="color:#fff">🎯 成品</h3>
+    <!-- 流程 A：Codex → PPT -->
+    <div class="flow-head">
+      <img src="assets/codex-logo.png" alt="Codex">
+      <h3>流程 A：把資料變成一份 PPT</h3><span class="ftag">主打 Codex</span>
+    </div>
+    <div class="hflow">
+      <div class="hstep"><div class="hn">1</div><div class="hb"><h4>準備資料</h4><p>把要做簡報的資料（Excel／PDF／文件）放進資料夾；沒有資料就叫它上網找。</p><div class="cmd"><code>幫我上網找「XX 主題」的最新資料，整理成重點。</code><button data-copy="幫我上網找「XX 主題」的最新資料，整理成重點。" onclick="copyText(this)">複製</button></div></div></div>
+      <div class="hstep"><div class="hn">2</div><div class="hb"><h4>AI 分析、抓重點（你確認）</h4><p>讓它讀資料、算出重點，並列出來源和頁數給你核對，確認後再往下。</p><div class="cmd"><code>讀這份資料，列出重點和關鍵數據，標上來源頁數，我確認後再做。</code><button data-copy="讀這份資料，列出重點和關鍵數據，標上來源頁數，我確認後再做。" onclick="copyText(this)">複製</button></div></div></div>
+      <div class="hstep"><div class="hn">3</div><div class="hb"><h4>把數據做成圖表</h4><p>它會自己寫程式算、畫圖，不用你會 Excel。</p><div class="cmd"><code>把這些數據做成長條圖和圓餅圖。</code><button data-copy="把這些數據做成長條圖和圓餅圖。" onclick="copyText(this)">複製</button></div></div></div>
+      <div class="hstep"><div class="hn">4</div><div class="hb"><h4>產出 PPT</h4><p>用它的簡報技能，一句話生成整份簡報。</p><div class="cmd"><code>用上面的重點和圖表，幫我做一份 10 頁的 PPT。</code><button data-copy="用上面的重點和圖表，幫我做一份 10 頁的 PPT。" onclick="copyText(this)">複製</button></div></div></div>
+      <div class="hstep"><div class="hn">5</div><div class="hb"><h4>看成品、微調</h4><p>打開來看，哪裡不滿意就直接說。</p><div class="cmd"><code>第 3 頁改成條列、封面換個標題。</code><button data-copy="第 3 頁改成條列、封面換個標題。" onclick="copyText(this)">複製</button></div></div></div>
+    </div>
+    <div class="goal">🎯 課後成品：一份有數據圖表的 PPT</div>
+
+    <!-- 流程 B：Claude → 網頁上線 -->
+    <div class="flow-head">
+      <img src="assets/claude-logo.png" alt="Claude">
+      <h3>流程 B：做一個小網頁並發佈上線</h3><span class="ftag">主打 Claude</span>
+    </div>
+    <div class="hflow">
+      <div class="hstep"><div class="hn">1</div><div class="hb"><h4>開一個新專案</h4><p>打開 Claude，切到 Code 模式，選一個空資料夾當工作區。</p></div></div>
+      <div class="hstep"><div class="hn">2</div><div class="hb"><h4>寫一份 MD 規則</h4><p>用前面的「範本產生器」做一份，貼進專案，讓 AI 先懂你。</p></div></div>
+      <div class="hstep"><div class="hn">3</div><div class="hb"><h4>一句話交辦，本機看成果</h4><p>交辦你要的小工具，Claude 做好後直接在瀏覽器打開給你看。</p><div class="cmd"><code>幫我做一個 XX 的小網頁，手機也能開，做好在本機打開給我看。</code><button data-copy="幫我做一個 XX 的小網頁，手機也能開，做好在本機打開給我看。" onclick="copyText(this)">複製</button></div></div></div>
+      <div class="hstep"><div class="hn">4</div><div class="hb"><h4>申請網址、發佈上線</h4><p>請它發佈到 GitHub Pages（免費），完成後給你一個公開網址。</p><div class="cmd"><code>幫我把這個網頁發佈到 GitHub Pages，完成後給我網址。</code><button data-copy="幫我把這個網頁發佈到 GitHub Pages，完成後給我網址。" onclick="copyText(this)">複製</button></div></div></div>
+      <div class="hstep"><div class="hn">5</div><div class="hb"><h4>分享</h4><p>拿到網址，手機掃碼或傳連結，別人就能打開。</p></div></div>
+    </div>
+    <div class="goal">🎯 課後成品：一個手機掃碼就能開的網頁</div>
+
+    <!-- 真實示範 -->
+    <h4 style="font-weight:800;margin:40px 0 14px;font-size:18px">👀 真實示範：這個網頁就是用「流程 B」做出來的</h4>
+    <div class="card" style="background:var(--bg-dark);border:none;margin-bottom:24px">
       <p style="color:#a99e94">一頁式互動網頁，手機電腦都能開，用單一 HTML 檔完成、發佈在 GitHub Pages。</p>
       <a href="https://jackchan1973.github.io/learn-ai-web/" target="_blank" rel="noopener" style="color:var(--terra);font-weight:700;font-size:14px;text-decoration:none;display:inline-block;margin-top:8px">jackchan1973.github.io/learn-ai-web ↗</a>
     </div>
-
-    <h4 style="font-weight:800;margin:0 0 14px;font-size:18px">📦 網頁內容包括哪些</h4>
-    <div class="grid g2">
-      <div class="card" style="padding:16px 18px"><h3 style="font-size:15px;margin-bottom:5px">什麼是 AI</h3><p style="font-size:13px">三層 AI：LLM（大語言模型）／Workflow（工作流）／Agent（會做決定）</p></div>
-      <div class="card" style="padding:16px 18px"><h3 style="font-size:15px;margin-bottom:5px">AI 安裝</h3><p style="font-size:13px">Claude、Codex 兩個桌面端分頁教學，含權限／顯示模式設定</p></div>
-      <div class="card" style="padding:16px 18px"><h3 style="font-size:15px;margin-bottom:5px">MD 文件</h3><p style="font-size:13px">CLAUDE.md（Claude）vs AGENTS.md（Codex）、全局 vs 專案記憶</p></div>
-      <div class="card" style="padding:16px 18px"><h3 style="font-size:15px;margin-bottom:5px">範本產生器</h3><p style="font-size:13px">填空即時生成專屬 MD、一鍵複製</p></div>
-      <div class="card" style="padding:16px 18px"><h3 style="font-size:15px;margin-bottom:5px">訓練自己的 Agent</h3><p style="font-size:13px">一句指令自動跑到交付的 8 步配方（含 3 個安全煞車）</p></div>
-      <div class="card" style="padding:16px 18px"><h3 style="font-size:15px;margin-bottom:5px">案例分享</h3><p style="font-size:13px">單字複習程式、刷題工具（都有線上網址）＋回家作業</p></div>
-      <div class="card" style="padding:16px 18px"><h3 style="font-size:15px;margin-bottom:5px">製作案例</h3><p style="font-size:13px">就是這一段：這個網頁是怎麼做出來的</p></div>
-    </div>
-
-    <h4 style="font-weight:800;margin:36px 0 14px;font-size:18px">🛠 開發流程（正好走了一遍「訓練自己的 Agent」8 步）</h4>
     <div class="timeline">
-      <div class="tl"><span class="tn">① 討論需求</span><span class="tx">先定主題「學習 AI，和未來一起成長」</span></div>
+      <div class="tl"><span class="tn">① 討論需求</span><span class="tx">先定主題「學習 AI 和未來一起成長」</span></div>
       <div class="tl"><span class="tn">② 制定範圍</span><span class="tx">只做 Claude／Codex 桌面端，砍掉終端機版（先教最簡單的）</span></div>
       <div class="tl"><span class="tn">③ 定架構</span><span class="tx">先討論區塊架構，確認後才動手</span></div>
-      <div class="tl"><span class="tn">④ 紅線</span><span class="tx">不亂加內容、每一項改動先列清單等確認</span></div>
-      <div class="tl"><span class="tn">⑤ 執行</span><span class="tx">一版做出來，配色沿用簡報（深色＋磚橘＋米色）</span></div>
-      <div class="tl"><span class="tn">⑥ 驗收</span><span class="tx">每次改完都在瀏覽器實際驗證功能、圖片、無錯誤</span></div>
-      <div class="tl"><span class="tn">⑦ 卡住回報</span><span class="tx">工具有問題時如實說明、改用其他方式驗證</span></div>
-      <div class="tl"><span class="tn">⑧ 交付</span><span class="tx">發佈到 GitHub Pages，給手機網址</span></div>
+      <div class="tl"><span class="tn">④ 執行</span><span class="tx">一版做出來，配色沿用簡報（深色＋磚橘＋米色）</span></div>
+      <div class="tl"><span class="tn">⑤ 驗收</span><span class="tx">每次改完都在瀏覽器實際驗證功能、圖片、無錯誤</span></div>
+      <div class="tl"><span class="tn">⑥ 交付</span><span class="tx">發佈到 GitHub Pages，給手機網址</span></div>
     </div>
 
-    <h4 style="font-weight:800;margin:36px 0 14px;font-size:18px">💡 用到的做法／技巧</h4>
-    <div class="grid g2">
-      <div class="card"><h3>先讀素材再動手</h3><p>讓 AI 讀懂你手上的簡報、文件比重講快；連 Keynote 讀不到，也先自動轉成 PDF 再讀。</p></div>
-      <div class="card"><h3>沿用既有風格</h3><p>網頁配色直接抄簡報，成品一致又省事。</p></div>
-      <div class="card"><h3>單一 HTML 檔</h3><p>不用後端、不裝環境，手機電腦都能開，最好維護。</p></div>
-      <div class="card"><h3>一次改一項</h3><p>想改的先列清單、一批批交代，AI 一次做完再一起驗收。</p></div>
-    </div>
-
-    <div class="note">💡 給老師朋友的三個提醒：<strong>① 先討論再動手</strong>（架構沒定就寫容易白做）<strong>② 一次改一項</strong>（改完馬上看）<strong>③ 發佈其實很簡單</strong>（一句「幫我發佈上網」就有手機打得開的網址）。</div>
+    <div class="note" style="margin-top:24px">💡 三個小訣竅：<strong>① 先討論再動手</strong>（架構沒定就寫容易白做）<strong>② 一次改一項</strong>（改完馬上看）<strong>③ 發佈其實很簡單</strong>（一句「幫我發佈上網」就有手機打得開的網址）。</div>
   </div>
 </section>
 
@@ -807,7 +826,7 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
   </div>
 </section>
 
-<footer>學習 AI，和未來一起成長</footer>
+<footer>學習 AI 和未來一起成長</footer>
 
 <script>
 function closeNav(){document.getElementById('nl').classList.remove('open')}

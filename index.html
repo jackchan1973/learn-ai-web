@@ -374,13 +374,10 @@ header.hero.page-el.on{display:flex}
     <button class="navtoggle" onclick="document.getElementById('nl').classList.toggle('open')">☰</button>
     <div class="navlinks" id="nl">
       <a href="#" data-pg="home" onclick="showPage('home');return false">首頁</a>
-      <a href="#" data-pg="ai" onclick="showPage('ai');return false">什麼是 AI</a>
       <a href="#" data-pg="install" onclick="showPage('install');return false">AI 安裝</a>
       <a href="#" data-pg="md" onclick="showPage('md');return false">MD 文件</a>
-      <a href="#" data-pg="gen" onclick="showPage('gen');return false">範本製作</a>
-      <a href="#" data-pg="agent" onclick="showPage('agent');return false">做 Agent</a>
+      <a href="#" data-pg="agent" onclick="showPage('agent');return false">實戰練習</a>
       <a href="#" data-pg="case" onclick="showPage('case');return false">案例分享</a>
-      <a href="#" data-pg="story" onclick="showPage('story');return false">實戰練習</a>
     </div>
   </div>
 </nav>
@@ -391,44 +388,13 @@ header.hero.page-el.on{display:flex}
   <div class="wrap">
     <h1>學習 AI<br><span class="g">和未來一起成長</span></h1>
     <p class="sub">不用懂程式，用中文把想做的事講清楚，AI 就能幫你完成。這一頁帶你認識 AI、裝好工具、寫下屬於自己的規則。</p>
-    <a href="#" class="cta" onclick="showPage('ai');return false">開始了解 →</a>
+    <a href="#" class="cta" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'});return false">開始了解 →</a>
     <div class="scroll-tip">↓ 往下滑，一步步來</div>
   </div>
 </header>
 
-<!-- 首頁：Claude／Codex 能做什麼 -->
-<section id="can" class="page-el on" data-pg="home">
-  <div class="wrap">
-    <div class="eyebrow">Claude ・ Codex 能做什麼</div>
-    <h2 class="title">你說一句話，它幫你做出來</h2>
-    <p class="lead">AI Agent 不只是聊天 —— 你用中文交辦，它就動手做出成品。看幾個例子就懂：</p>
-    <div class="saydo">
-      <div class="sd reveal">
-        <div class="say">🗣️「幫我做一個單字測驗網頁」</div>
-        <div class="sdarr">↓ AI 幫你做出</div>
-        <div class="do"><b>一個能答題、自動對答案的網頁</b>，手機也能開</div>
-      </div>
-      <div class="sd reveal d1">
-        <div class="say">🗣️「把這堆照片按日期改名整理」</div>
-        <div class="sdarr">↓ AI 幫你做出</div>
-        <div class="do"><b>命名整齊、分好類的照片</b>，一次搞定幾百張</div>
-      </div>
-      <div class="sd reveal d2">
-        <div class="say">🗣️「幫我核對這兩份名單哪裡不一樣」</div>
-        <div class="sdarr">↓ AI 幫你做出</div>
-        <div class="do"><b>一項項比對、標出所有差異</b>，重複、大量的核對都交給它</div>
-      </div>
-      <div class="sd reveal d3">
-        <div class="say">🗣️「把這份文件／影片整理成重點簡報」</div>
-        <div class="sdarr">↓ AI 幫你做出</div>
-        <div class="do"><b>一份重點整理的 PPT 或網頁</b>，文件、網頁、影片都能讀</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- 什麼是 AI（只講三層，不含任何軟體介面）-->
-<section id="ai" class="page-el" data-pg="ai">
+<section id="ai" class="page-el on" data-pg="home">
   <div class="wrap">
     <div class="eyebrow">01 · 認識 AI</div>
     <h2 class="title">什麼是 AI？先分清楚三種</h2>
@@ -459,6 +425,37 @@ header.hero.page-el.on{display:flex}
       </div>
     </div>
     <div class="note dk" style="background:var(--cream2);color:var(--ink-soft);border-left:3px solid var(--terra);padding:12px 16px;border-radius:0 10px 10px 0;margin-top:24px">💡 接下來要裝的 <strong style="color:var(--ink)">Claude Code</strong> 和 <strong style="color:var(--ink)">Codex</strong> 都屬於第三種。它們是<strong style="color:var(--ink)">兩套不同的軟體</strong>，下一段會分開介紹 —— 你可以只裝其中一個，也可以兩個都裝。</div>
+  </div>
+</section>
+
+<!-- 首頁：Claude／Codex 能做什麼 -->
+<section id="can" class="page-el on" data-pg="home">
+  <div class="wrap">
+    <div class="eyebrow">Claude ・ Codex 能做什麼</div>
+    <h2 class="title">你說一句話，它幫你做出來</h2>
+    <p class="lead">AI Agent 不只是聊天 —— 你用中文交辦，它就動手做出成品。看幾個例子就懂：</p>
+    <div class="saydo">
+      <div class="sd reveal">
+        <div class="say">🗣️「幫我做一個單字測驗網頁」</div>
+        <div class="sdarr">↓ AI 幫你做出</div>
+        <div class="do"><b>一個能答題、自動對答案的網頁</b>，手機也能開</div>
+      </div>
+      <div class="sd reveal d1">
+        <div class="say">🗣️「把這堆照片按日期改名整理」</div>
+        <div class="sdarr">↓ AI 幫你做出</div>
+        <div class="do"><b>命名整齊、分好類的照片</b>，一次搞定幾百張</div>
+      </div>
+      <div class="sd reveal d2">
+        <div class="say">🗣️「幫我核對這兩份名單哪裡不一樣」</div>
+        <div class="sdarr">↓ AI 幫你做出</div>
+        <div class="do"><b>一項項比對、標出所有差異</b>，重複、大量的核對都交給它</div>
+      </div>
+      <div class="sd reveal d3">
+        <div class="say">🗣️「把這份文件／影片整理成重點簡報」</div>
+        <div class="sdarr">↓ AI 幫你做出</div>
+        <div class="do"><b>一份重點整理的 PPT 或網頁</b>，文件、網頁、影片都能讀</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -610,7 +607,7 @@ header.hero.page-el.on{display:flex}
 </section>
 
 <!-- MD 產生器 -->
-<section id="gen" class="page-el" data-pg="gen">
+<section id="gen" class="page-el" data-pg="md">
   <div class="wrap">
     <div class="eyebrow">04 · 動手做一份</div>
     <h2 class="title">⭐ MD 範本產生器</h2>
@@ -754,7 +751,7 @@ header.hero.page-el.on{display:flex}
 </section>
 
 <!-- 製作案例 -->
-<section id="story" class="tint page-el" data-pg="story">
+<section id="story" class="tint page-el" data-pg="agent">
   <div class="wrap">
     <div class="eyebrow">07 · 實戰練習</div>
     <h2 class="title">跟著做，做出你的成品</h2>
@@ -765,13 +762,18 @@ header.hero.page-el.on{display:flex}
       <img src="assets/codex-logo.png" alt="Codex">
       <h3>流程 A：把資料變成一份 PPT</h3><span class="ftag">主打 Codex</span>
     </div>
-    <div class="flowin"><label>✏️ 填你的主題，下面的指令會自動帶入</label><input id="faTopic" placeholder="例：台灣夜市、太陽能發電" oninput="fillA()"></div>
-    <div class="hflow" id="flowA">
-      <div class="hstep"><div class="hn">1</div><div class="hb"><h4>準備資料</h4><p>把要做簡報的資料（Excel／PDF／文件）放進資料夾；沒有資料就叫它上網找。</p><div class="cmd" data-tpl="幫我上網找「{x}」的最新資料，整理成重點。"><code></code><button onclick="copyText(this)">複製</button></div></div></div>
-      <div class="hstep"><div class="hn">2</div><div class="hb"><h4>AI 分析、抓重點（你確認）</h4><p>讓它讀資料、算出重點，並列出來源和頁數給你核對，確認後再往下。</p><div class="cmd"><code>讀這份資料，列出重點和關鍵數據，標上來源頁數，我確認後再做。</code><button data-copy="讀這份資料，列出重點和關鍵數據，標上來源頁數，我確認後再做。" onclick="copyText(this)">複製</button></div></div></div>
-      <div class="hstep"><div class="hn">3</div><div class="hb"><h4>把數據做成圖表</h4><p>它會自己寫程式算、畫圖，不用你會 Excel。</p><div class="cmd"><code>把這些數據做成長條圖和圓餅圖。</code><button data-copy="把這些數據做成長條圖和圓餅圖。" onclick="copyText(this)">複製</button></div></div></div>
-      <div class="hstep"><div class="hn">4</div><div class="hb"><h4>產出 PPT</h4><p>用它的簡報技能，一句話生成整份簡報。</p><div class="cmd" data-tpl="用上面的重點和圖表，幫我做一份關於「{x}」的 10 頁 PPT。"><code></code><button onclick="copyText(this)">複製</button></div></div></div>
-      <div class="hstep"><div class="hn">5</div><div class="hb"><h4>看成品、微調</h4><p>打開來看，哪裡不滿意就直接說。</p><div class="cmd"><code>第 3 頁改成條列、封面換個標題。</code><button data-copy="第 3 頁改成條列、封面換個標題。" onclick="copyText(this)">複製</button></div></div></div>
+    <p style="color:var(--ink-soft);font-size:14px;margin-bottom:14px">填一下，右邊即時生成整份操作指令稿，一鍵複製，照著一句一句貼給 Codex。</p>
+    <div class="gen" style="margin-bottom:0">
+      <div class="form">
+        <label>你的主題</label>
+        <input id="faTopic" value="台灣夜市" oninput="genA()">
+        <label>想做幾頁</label>
+        <input id="faPages" value="10" oninput="genA()">
+      </div>
+      <div class="output">
+        <div class="ohead"><span class="fname">流程 A · 指令稿</span><button class="copybtn" onclick="copyScript(this)">複製</button></div>
+        <pre id="aScript"></pre>
+      </div>
     </div>
     <div class="goal">🎯 課後成品：一份有數據圖表的 PPT</div>
 
@@ -780,13 +782,16 @@ header.hero.page-el.on{display:flex}
       <img src="assets/claude-logo.png" alt="Claude">
       <h3>流程 B：做一個小網頁並發佈上線</h3><span class="ftag">主打 Claude</span>
     </div>
-    <div class="flowin"><label>✏️ 填你想做的小網頁，下面的指令會自動帶入</label><input id="fbTopic" placeholder="例：成語測驗、記帳小工具" oninput="fillB()"></div>
-    <div class="hflow" id="flowB">
-      <div class="hstep"><div class="hn">1</div><div class="hb"><h4>開一個新專案</h4><p>打開 Claude，切到 Code 模式，選一個空資料夾當工作區。</p></div></div>
-      <div class="hstep"><div class="hn">2</div><div class="hb"><h4>寫一份 MD 規則</h4><p>用前面的「範本產生器」做一份，貼進專案，讓 AI 先懂你。</p></div></div>
-      <div class="hstep"><div class="hn">3</div><div class="hb"><h4>一句話交辦，本機看成果</h4><p>交辦你要的小工具，Claude 做好後直接在瀏覽器打開給你看。</p><div class="cmd" data-tpl="幫我做一個「{x}」的小網頁，手機也能開，做好在本機打開給我看。"><code></code><button onclick="copyText(this)">複製</button></div></div></div>
-      <div class="hstep"><div class="hn">4</div><div class="hb"><h4>申請網址、發佈上線</h4><p>請它發佈到 GitHub Pages（免費），完成後給你一個公開網址。</p><div class="cmd"><code>幫我把這個網頁發佈到 GitHub Pages，完成後給我網址。</code><button data-copy="幫我把這個網頁發佈到 GitHub Pages，完成後給我網址。" onclick="copyText(this)">複製</button></div></div></div>
-      <div class="hstep"><div class="hn">5</div><div class="hb"><h4>分享</h4><p>拿到網址，手機掃碼或傳連結，別人就能打開。</p></div></div>
+    <p style="color:var(--ink-soft);font-size:14px;margin-bottom:14px">填一下，右邊即時生成整份操作指令稿，一鍵複製，照著一句一句貼給 Claude。</p>
+    <div class="gen" style="margin-bottom:0">
+      <div class="form">
+        <label>你想做什麼小網頁</label>
+        <input id="fbTopic" value="成語測驗" oninput="genB()">
+      </div>
+      <div class="output">
+        <div class="ohead"><span class="fname">流程 B · 指令稿</span><button class="copybtn" onclick="copyScript(this)">複製</button></div>
+        <pre id="bScript"></pre>
+      </div>
     </div>
     <div class="goal">🎯 課後成品：一個手機掃碼就能開的網頁</div>
 
@@ -810,12 +815,12 @@ header.hero.page-el.on{display:flex}
 </section>
 
 <!-- 結尾（歸在首頁）-->
-<section class="closing page-el on" data-pg="home">
+<section class="closing page-el" data-pg="case">
   <div class="ring"></div>
   <div class="wrap">
     <h2>換你了，動手試試看</h2>
     <p>現在就打開 Claude Code 或 Codex，挑一個小任務試試看。<br>做完，帶來跟大家分享成果！</p>
-    <a href="#" class="cta" onclick="showPage('gen');return false">先做一份我的 MD 文件 →</a>
+    <a href="#" class="cta" onclick="showPage('md');return false">先做一份我的 MD 文件 →</a>
   </div>
 </section>
 
@@ -896,18 +901,34 @@ function copyText(btn){
     setTimeout(()=>{btn.textContent=t; btn.classList.remove('done')},1600);
   });
 }
-// 實戰流程：填主題 → 即時帶入每步指令
-function fillFlow(sel, val, fallback){
-  const v=(val||'').trim()||fallback;
-  document.querySelectorAll(sel+' [data-tpl]').forEach(c=>{
-    const txt=c.dataset.tpl.replace('{x}', v);
-    c.querySelector('code').textContent=txt;
-    c.querySelector('button').dataset.copy=txt;
+// 實戰流程：填一填 → 生成整份指令稿
+function genA(){
+  const t=(document.getElementById('faTopic').value||'').trim()||'你的主題';
+  const p=(document.getElementById('faPages').value||'').trim()||'10';
+  document.getElementById('aScript').textContent=
+`① 幫我上網找「${t}」的最新資料，整理成重點。
+② 讀資料，列出重點和關鍵數據，標上來源頁數，我確認後再做。
+③ 把這些數據做成長條圖和圓餅圖。
+④ 用上面的重點和圖表，幫我做一份關於「${t}」的 ${p} 頁 PPT。
+⑤ 打開來看再微調，例如：第 3 頁改條列、封面換個標題。`;
+}
+function genB(){
+  const t=(document.getElementById('fbTopic').value||'').trim()||'你的小工具';
+  document.getElementById('bScript').textContent=
+`① 開一個新專案：打開 Claude，切到 Code 模式，選一個空資料夾。
+② 貼上我的 MD 規則（用「MD 文件」頁的產生器做一份）。
+③ 幫我做一個「${t}」的小網頁，手機也能開，做好在本機打開給我看。
+④ 幫我把這個網頁發佈到 GitHub Pages，完成後給我網址。
+⑤ 拿到網址，手機掃碼或傳連結給別人。`;
+}
+function copyScript(btn){
+  const pre=btn.closest('.gen').querySelector('pre');
+  navigator.clipboard.writeText(pre.textContent).then(()=>{
+    const t=btn.textContent; btn.textContent='✓ 已複製'; btn.classList.add('done');
+    setTimeout(()=>{btn.textContent=t; btn.classList.remove('done')},1600);
   });
 }
-function fillA(){fillFlow('#flowA', document.getElementById('faTopic').value, '你的主題')}
-function fillB(){fillFlow('#flowB', document.getElementById('fbTopic').value, '你的小工具')}
-fillA(); fillB();
+genA(); genB();
 function copyMd(){
   const txt=document.getElementById('mdout').innerText;
   navigator.clipboard.writeText(txt).then(()=>{

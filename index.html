@@ -168,8 +168,9 @@ a.dl:hover code{background:var(--terra);color:#fff;text-decoration-color:#fff}
 .tool-switch button img{width:22px;height:22px;object-fit:contain}
 .tool-switch button.on{background:var(--terra);border-color:var(--terra);color:#fff}
 .form label{display:block;font-size:13px;font-weight:700;color:var(--ink);margin:14px 0 6px}
-.form input,.form select{width:100%;padding:11px 13px;border:1.5px solid var(--line);border-radius:10px;font-size:14.5px;font-family:var(--font);background:#fff;color:var(--ink)}
-.form input:focus,.form select:focus{outline:none;border-color:var(--terra)}
+.form input,.form select,.form textarea{width:100%;padding:11px 13px;border:1.5px solid var(--line);border-radius:10px;font-size:14.5px;font-family:var(--font);background:#fff;color:var(--ink)}
+.form textarea{resize:vertical;line-height:1.6}
+.form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--terra)}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
 .chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font-size:13px;cursor:pointer;transition:.2s;user-select:none}
 .chip.on{background:var(--terra);border-color:var(--terra);color:#fff}
@@ -755,48 +756,48 @@ header.hero.page-el.on{display:flex}
   <div class="wrap">
     <div class="eyebrow">07 · 實戰練習</div>
     <h2 class="title">跟著做，做出你的成品</h2>
-    <p class="lead">打開你自己電腦的 Claude 或 Codex，照下面兩條流程一步步做，就能親手產出一個成品。每一步都有可複製的指令，貼進去就能用。</p>
+    <p class="lead">填一份「專項任務 MD」，把這個任務要怎麼做全寫清楚，交給你自己電腦的 Claude／Codex，它就照這份規則自動幫你做出成品。每個欄位都能改。</p>
 
-    <!-- 流程 A：Codex → PPT -->
     <div class="flow-head">
-      <img src="assets/codex-logo.png" alt="Codex">
-      <h3>流程 A：把資料變成一份 PPT</h3><span class="ftag">主打 Codex</span>
+      <span style="font-size:26px">🎯</span>
+      <h3>專項任務 MD 產生器</h3><span class="ftag">每個欄位都能改</span>
     </div>
-    <p style="color:var(--ink-soft);font-size:14px;margin-bottom:14px">填一下，右邊即時生成整份操作指令稿，一鍵複製，照著一句一句貼給 Codex。</p>
+    <div class="tool-switch" id="taskSw">
+      <button class="on" onclick="setTask('ppt')"><img src="assets/codex-logo.png">PPT 任務（Codex）</button>
+      <button onclick="setTask('web')"><img src="assets/claude-logo.png">網頁任務（Claude）</button>
+    </div>
     <div class="gen" style="margin-bottom:0">
       <div class="form">
-        <label>你的主題</label>
-        <input id="faTopic" value="台灣夜市" oninput="genA()">
-        <label>想做幾頁</label>
-        <input id="faPages" value="10" oninput="genA()">
+        <label>任務名稱</label>
+        <input id="t_name" oninput="genTask()">
+        <label>1. 任務目標</label>
+        <input id="t_goal" oninput="genTask()">
+        <label>2. 使用對象</label>
+        <input id="t_who" oninput="genTask()">
+        <label>3. 語氣與風格</label>
+        <input id="t_tone" oninput="genTask()">
+        <label>4. 工作流程（一行一步）</label>
+        <textarea id="t_flow" rows="6" oninput="genTask()"></textarea>
+        <label>5. 資料依據</label>
+        <input id="t_data" oninput="genTask()">
+        <label>6. 輸出格式</label>
+        <input id="t_out" oninput="genTask()">
+        <label>7. 禁止事項</label>
+        <input id="t_no" oninput="genTask()">
+        <label>8. 驗收標準</label>
+        <input id="t_check" oninput="genTask()">
+        <label>9. 交付內容</label>
+        <input id="t_deliver" oninput="genTask()">
       </div>
       <div class="output">
-        <div class="ohead"><span class="fname">流程 A · 指令稿</span><button class="copybtn" onclick="copyScript(this)">複製</button></div>
-        <pre id="aScript"></pre>
+        <div class="ohead"><span class="fname" id="taskFname">簡報任務.md</span><button class="copybtn" onclick="copyScript(this)">複製</button></div>
+        <pre id="taskScript"></pre>
       </div>
     </div>
-    <div class="goal">🎯 課後成品：一份有數據圖表的 PPT</div>
-
-    <!-- 流程 B：Claude → 網頁上線 -->
-    <div class="flow-head">
-      <img src="assets/claude-logo.png" alt="Claude">
-      <h3>流程 B：做一個小網頁並發佈上線</h3><span class="ftag">主打 Claude</span>
-    </div>
-    <p style="color:var(--ink-soft);font-size:14px;margin-bottom:14px">填一下，右邊即時生成整份操作指令稿，一鍵複製，照著一句一句貼給 Claude。</p>
-    <div class="gen" style="margin-bottom:0">
-      <div class="form">
-        <label>你想做什麼小網頁</label>
-        <input id="fbTopic" value="成語測驗" oninput="genB()">
-      </div>
-      <div class="output">
-        <div class="ohead"><span class="fname">流程 B · 指令稿</span><button class="copybtn" onclick="copyScript(this)">複製</button></div>
-        <pre id="bScript"></pre>
-      </div>
-    </div>
-    <div class="goal">🎯 課後成品：一個手機掃碼就能開的網頁</div>
+    <div class="goal" id="taskGoal">🎯 課後成品：一份有數據圖表的 PPT</div>
 
     <!-- 真實示範 -->
-    <h4 style="font-weight:800;margin:40px 0 14px;font-size:18px">👀 真實示範：這個網頁就是用「流程 B」做出來的</h4>
+    <h4 style="font-weight:800;margin:40px 0 14px;font-size:18px">👀 真實示範：這個網頁就是用「網頁任務」做出來的</h4>
     <div class="card" style="background:var(--bg-dark);border:none;margin-bottom:24px">
       <p style="color:#a99e94">一頁式互動網頁，手機電腦都能開，用單一 HTML 檔完成、發佈在 GitHub Pages。</p>
       <a href="https://jackchan1973.github.io/learn-ai-web/" target="_blank" rel="noopener" style="color:var(--terra);font-weight:700;font-size:14px;text-decoration:none;display:inline-block;margin-top:8px">jackchan1973.github.io/learn-ai-web ↗</a>
@@ -901,25 +902,59 @@ function copyText(btn){
     setTimeout(()=>{btn.textContent=t; btn.classList.remove('done')},1600);
   });
 }
-// 實戰流程：填一填 → 生成整份指令稿
-function genA(){
-  const t=(document.getElementById('faTopic').value||'').trim()||'你的主題';
-  const p=(document.getElementById('faPages').value||'').trim()||'10';
-  document.getElementById('aScript').textContent=
-`① 幫我上網找「${t}」的最新資料，整理成重點。
-② 讀資料，列出重點和關鍵數據，標上來源頁數，我確認後再做。
-③ 把這些數據做成長條圖和圓餅圖。
-④ 用上面的重點和圖表，幫我做一份關於「${t}」的 ${p} 頁 PPT。
-⑤ 打開來看再微調，例如：第 3 頁改條列、封面換個標題。`;
+// 專項任務 MD 產生器
+const taskPresets={
+  ppt:{name:'把資料做成一份 PPT', goal:'把我提供的資料整理成一份清楚好懂的簡報', who:'給＿＿看（例如：學生、同事、家長）', tone:'繁體中文，白話清楚，先講結論，再補充細節。',
+    flow:'1. 讀我的資料，或上網找資料，整理成重點\n2. 列出重點和關鍵數據，標上來源頁數，我確認後再做\n3. 把數據做成圖表\n4. 用重點和圖表做成 10 頁簡報\n5. 給我看後再微調',
+    data:'以我提供的資料與官方來源為準，不確定的內容要標註，不可以亂猜。', out:'一份 PPT，含圖表；重點用條列，畫面清楚。',
+    no:'不可自行刪除、覆蓋、發布或修改重要資料，除非我明確同意。', check:'內容正確、圖表清楚、頁數合理、符合我的需求。', deliver:'列出做了哪些內容、用了哪些資料、還有哪些建議。',
+    fname:'簡報任務.md', goalText:'🎯 課後成品：一份有數據圖表的 PPT'},
+  web:{name:'做一個小網頁並發佈上線', goal:'做一個小網頁，手機也能開，並發佈成公開網址', who:'給＿＿用（例如：學生、朋友）', tone:'繁體中文，白話清楚，先講結論，再補充細節。',
+    flow:'1. 開一個新專案，選一個空資料夾\n2. 讀我的 MD 規則\n3. 做出小網頁，本機打開給我看\n4. 發佈到 GitHub Pages，給我網址\n5. 我確認後再分享',
+    data:'以我提供的內容為準，不確定的內容要標註，不可以亂猜。', out:'一個純網頁（單一 HTML），手機電腦都能開。',
+    no:'不可自行刪除、覆蓋、發布或修改重要資料，除非我明確同意。', check:'手機電腦都正常、功能可用、網址能打開。', deliver:'列出做了哪些功能、哪些檔案、網址、還有哪些建議。',
+    fname:'網頁任務.md', goalText:'🎯 課後成品：一個手機掃碼就能開的網頁'}
+};
+function setTask(k){
+  const p=taskPresets[k];
+  t_name.value=p.name; t_goal.value=p.goal; t_who.value=p.who; t_tone.value=p.tone; t_flow.value=p.flow;
+  t_data.value=p.data; t_out.value=p.out; t_no.value=p.no; t_check.value=p.check; t_deliver.value=p.deliver;
+  document.getElementById('taskFname').textContent=p.fname;
+  document.getElementById('taskGoal').textContent=p.goalText;
+  document.querySelectorAll('#taskSw button').forEach((b,i)=>b.classList.toggle('on',(k==='ppt')===(i===0)));
+  genTask();
 }
-function genB(){
-  const t=(document.getElementById('fbTopic').value||'').trim()||'你的小工具';
-  document.getElementById('bScript').textContent=
-`① 開一個新專案：打開 Claude，切到 Code 模式，選一個空資料夾。
-② 貼上我的 MD 規則（用「MD 文件」頁的產生器做一份）。
-③ 幫我做一個「${t}」的小網頁，手機也能開，做好在本機打開給我看。
-④ 幫我把這個網頁發佈到 GitHub Pages，完成後給我網址。
-⑤ 拿到網址，手機掃碼或傳連結給別人。`;
+function genTask(){
+  const g=id=>(document.getElementById(id).value||'').trim()||'＿＿';
+  document.getElementById('taskScript').textContent=
+`# ${g('t_name')}
+
+## 1. 任務目標
+${g('t_goal')}
+
+## 2. 使用對象
+${g('t_who')}
+
+## 3. 語氣與風格
+${g('t_tone')}
+
+## 4. 工作流程
+${g('t_flow')}
+
+## 5. 資料依據
+${g('t_data')}
+
+## 6. 輸出格式
+${g('t_out')}
+
+## 7. 禁止事項
+${g('t_no')}
+
+## 8. 驗收標準
+${g('t_check')}
+
+## 9. 交付內容
+${g('t_deliver')}`;
 }
 function copyScript(btn){
   const pre=btn.closest('.gen').querySelector('pre');
@@ -928,7 +963,7 @@ function copyScript(btn){
     setTimeout(()=>{btn.textContent=t; btn.classList.remove('done')},1600);
   });
 }
-genA(); genB();
+setTask('ppt');
 function copyMd(){
   const txt=document.getElementById('mdout').innerText;
   navigator.clipboard.writeText(txt).then(()=>{

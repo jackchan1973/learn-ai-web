@@ -327,6 +327,10 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
 .hstep h4{font-size:15px;font-weight:800;margin-bottom:3px}
 .hstep p{font-size:13.5px;color:var(--ink-soft)}
 .goal{display:flex;align-items:center;gap:10px;background:rgba(200,114,79,.1);border:1px dashed var(--terra);border-radius:12px;padding:14px 18px;margin-top:12px;font-weight:800;color:var(--terra-d);font-size:14.5px}
+.flowin{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:14px}
+.flowin label{display:block;font-size:13.5px;font-weight:800;margin-bottom:7px}
+.flowin input{width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:9px;font-size:15px;font-family:var(--font);color:var(--ink)}
+.flowin input:focus{outline:none;border-color:var(--terra)}
 
 /* ===== 案例縮圖與看成品按鈕 ===== */
 .case-thumb{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:10px;border:1px solid rgba(255,255,255,.12)}
@@ -761,11 +765,12 @@ header.hero.page-el.on{display:flex}
       <img src="assets/codex-logo.png" alt="Codex">
       <h3>流程 A：把資料變成一份 PPT</h3><span class="ftag">主打 Codex</span>
     </div>
-    <div class="hflow">
-      <div class="hstep"><div class="hn">1</div><div class="hb"><h4>準備資料</h4><p>把要做簡報的資料（Excel／PDF／文件）放進資料夾；沒有資料就叫它上網找。</p><div class="cmd"><code>幫我上網找「XX 主題」的最新資料，整理成重點。</code><button data-copy="幫我上網找「XX 主題」的最新資料，整理成重點。" onclick="copyText(this)">複製</button></div></div></div>
+    <div class="flowin"><label>✏️ 填你的主題，下面的指令會自動帶入</label><input id="faTopic" placeholder="例：台灣夜市、太陽能發電" oninput="fillA()"></div>
+    <div class="hflow" id="flowA">
+      <div class="hstep"><div class="hn">1</div><div class="hb"><h4>準備資料</h4><p>把要做簡報的資料（Excel／PDF／文件）放進資料夾；沒有資料就叫它上網找。</p><div class="cmd" data-tpl="幫我上網找「{x}」的最新資料，整理成重點。"><code></code><button onclick="copyText(this)">複製</button></div></div></div>
       <div class="hstep"><div class="hn">2</div><div class="hb"><h4>AI 分析、抓重點（你確認）</h4><p>讓它讀資料、算出重點，並列出來源和頁數給你核對，確認後再往下。</p><div class="cmd"><code>讀這份資料，列出重點和關鍵數據，標上來源頁數，我確認後再做。</code><button data-copy="讀這份資料，列出重點和關鍵數據，標上來源頁數，我確認後再做。" onclick="copyText(this)">複製</button></div></div></div>
       <div class="hstep"><div class="hn">3</div><div class="hb"><h4>把數據做成圖表</h4><p>它會自己寫程式算、畫圖，不用你會 Excel。</p><div class="cmd"><code>把這些數據做成長條圖和圓餅圖。</code><button data-copy="把這些數據做成長條圖和圓餅圖。" onclick="copyText(this)">複製</button></div></div></div>
-      <div class="hstep"><div class="hn">4</div><div class="hb"><h4>產出 PPT</h4><p>用它的簡報技能，一句話生成整份簡報。</p><div class="cmd"><code>用上面的重點和圖表，幫我做一份 10 頁的 PPT。</code><button data-copy="用上面的重點和圖表，幫我做一份 10 頁的 PPT。" onclick="copyText(this)">複製</button></div></div></div>
+      <div class="hstep"><div class="hn">4</div><div class="hb"><h4>產出 PPT</h4><p>用它的簡報技能，一句話生成整份簡報。</p><div class="cmd" data-tpl="用上面的重點和圖表，幫我做一份關於「{x}」的 10 頁 PPT。"><code></code><button onclick="copyText(this)">複製</button></div></div></div>
       <div class="hstep"><div class="hn">5</div><div class="hb"><h4>看成品、微調</h4><p>打開來看，哪裡不滿意就直接說。</p><div class="cmd"><code>第 3 頁改成條列、封面換個標題。</code><button data-copy="第 3 頁改成條列、封面換個標題。" onclick="copyText(this)">複製</button></div></div></div>
     </div>
     <div class="goal">🎯 課後成品：一份有數據圖表的 PPT</div>
@@ -775,10 +780,11 @@ header.hero.page-el.on{display:flex}
       <img src="assets/claude-logo.png" alt="Claude">
       <h3>流程 B：做一個小網頁並發佈上線</h3><span class="ftag">主打 Claude</span>
     </div>
-    <div class="hflow">
+    <div class="flowin"><label>✏️ 填你想做的小網頁，下面的指令會自動帶入</label><input id="fbTopic" placeholder="例：成語測驗、記帳小工具" oninput="fillB()"></div>
+    <div class="hflow" id="flowB">
       <div class="hstep"><div class="hn">1</div><div class="hb"><h4>開一個新專案</h4><p>打開 Claude，切到 Code 模式，選一個空資料夾當工作區。</p></div></div>
       <div class="hstep"><div class="hn">2</div><div class="hb"><h4>寫一份 MD 規則</h4><p>用前面的「範本產生器」做一份，貼進專案，讓 AI 先懂你。</p></div></div>
-      <div class="hstep"><div class="hn">3</div><div class="hb"><h4>一句話交辦，本機看成果</h4><p>交辦你要的小工具，Claude 做好後直接在瀏覽器打開給你看。</p><div class="cmd"><code>幫我做一個 XX 的小網頁，手機也能開，做好在本機打開給我看。</code><button data-copy="幫我做一個 XX 的小網頁，手機也能開，做好在本機打開給我看。" onclick="copyText(this)">複製</button></div></div></div>
+      <div class="hstep"><div class="hn">3</div><div class="hb"><h4>一句話交辦，本機看成果</h4><p>交辦你要的小工具，Claude 做好後直接在瀏覽器打開給你看。</p><div class="cmd" data-tpl="幫我做一個「{x}」的小網頁，手機也能開，做好在本機打開給我看。"><code></code><button onclick="copyText(this)">複製</button></div></div></div>
       <div class="hstep"><div class="hn">4</div><div class="hb"><h4>申請網址、發佈上線</h4><p>請它發佈到 GitHub Pages（免費），完成後給你一個公開網址。</p><div class="cmd"><code>幫我把這個網頁發佈到 GitHub Pages，完成後給我網址。</code><button data-copy="幫我把這個網頁發佈到 GitHub Pages，完成後給我網址。" onclick="copyText(this)">複製</button></div></div></div>
       <div class="hstep"><div class="hn">5</div><div class="hb"><h4>分享</h4><p>拿到網址，手機掃碼或傳連結，別人就能打開。</p></div></div>
     </div>
@@ -890,6 +896,18 @@ function copyText(btn){
     setTimeout(()=>{btn.textContent=t; btn.classList.remove('done')},1600);
   });
 }
+// 實戰流程：填主題 → 即時帶入每步指令
+function fillFlow(sel, val, fallback){
+  const v=(val||'').trim()||fallback;
+  document.querySelectorAll(sel+' [data-tpl]').forEach(c=>{
+    const txt=c.dataset.tpl.replace('{x}', v);
+    c.querySelector('code').textContent=txt;
+    c.querySelector('button').dataset.copy=txt;
+  });
+}
+function fillA(){fillFlow('#flowA', document.getElementById('faTopic').value, '你的主題')}
+function fillB(){fillFlow('#flowB', document.getElementById('fbTopic').value, '你的小工具')}
+fillA(); fillB();
 function copyMd(){
   const txt=document.getElementById('mdout').innerText;
   navigator.clipboard.writeText(txt).then(()=>{

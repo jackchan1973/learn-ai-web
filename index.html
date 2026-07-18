@@ -348,6 +348,14 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
 .cmd button{background:var(--terra);border:none;color:#fff;font-weight:700;font-size:12px;padding:7px 12px;border-radius:7px;cursor:pointer;white-space:nowrap;transition:.2s}
 .cmd button:hover{background:var(--terra-d)}
 .cmd button.done{background:#4f9d5f}
+.skill-install-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+.skill-install-card{background:var(--cream2);border:1px solid var(--line);border-radius:14px;padding:18px}
+.skill-install-card h4{font-size:16px;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.skill-install-card p{font-size:13.5px;color:var(--ink-soft);margin-bottom:12px}
+.skill-install-card code{display:block;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:9px;padding:10px 12px;font-size:13px;margin-bottom:12px;word-break:break-word}
+.skill-actions{display:flex;gap:8px;flex-wrap:wrap}
+.skill-actions .secondary{background:#fff;color:var(--terra);border:1.5px solid var(--terra)}
+.skill-actions .secondary:hover{background:rgba(200,114,79,.08)}
 
 /* ===== 分頁式：一次只顯示一段 ===== */
 .page-el{display:none}
@@ -357,7 +365,7 @@ header.hero.page-el.on{display:flex}
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:820px){
-  .g3,.g2,.steps,.compare,.gen,.shotwrap,.md-compare,.evo,.flow3,.aflow,.timeline{grid-template-columns:1fr}
+  .g3,.g2,.steps,.compare,.gen,.shotwrap,.md-compare,.evo,.flow3,.aflow,.timeline,.skill-install-grid{grid-template-columns:1fr}
   .recipe{grid-template-columns:1fr 1fr}
   .evo-arrow b,.flow3 .arr{transform:rotate(90deg)}
   .navlinks{position:fixed;top:60px;left:0;right:0;background:var(--bg-dark);flex-direction:column;padding:10px 16px;gap:2px;display:none;border-bottom:1px solid rgba(255,255,255,.1)}
@@ -403,7 +411,7 @@ header.hero.page-el.on{display:flex}
   <div class="wrap">
     <div class="eyebrow">01 · 認識 AI</div>
     <h2 class="title">什麼是 AI？先分清楚三種</h2>
-    <p class="lead">同樣叫「AI」，能力差很多。從左到右一路進化 —— 我們要學的是最厲害的第三種：會自己動手做事的 AI Agent。</p>
+    <p class="lead">同樣叫「AI」，能力差很多。從左到右一路進化 —— 我們分享第三種：會自己動手做事的 AI Agent。</p>
     <div class="evo">
       <div class="evo-stage reveal">
         <span class="es-tag">LLM</span>
@@ -723,8 +731,8 @@ header.hero.page-el.on{display:flex}
     <div class="grid g3" style="margin-bottom:28px">
       <div class="card">
         <div class="badge">1</div>
-        <h3>下載複習程式 Skill</h3>
-        <p>先把「複習程式 Skill」安裝到 Codex 或 Claude，讓 AI 讀得懂題目整理、作業製作、手機驗收與上線流程。</p>
+        <h3>第一次先安裝 Skill</h3>
+        <p>先複製你正在用的工具版本，貼到 Codex 或 Claude。下載 MD 只是備用。</p>
       </div>
       <div class="card">
         <div class="badge">2</div>
@@ -739,14 +747,29 @@ header.hero.page-el.on{display:flex}
     </div>
 
     <div class="card" style="background:#fff;margin-bottom:28px">
-      <h3>什麼是「複習程式 Skill」？</h3>
-      <p>它是一份給 Codex／Claude 看的製作規則。老師不用理解技術細節，只要先安裝這份 Skill，之後把題目資料夾和下方 MD 任務交給 AI，就能更穩定地做出複習、測驗、作業回收小程式。</p>
-      <div class="cmd" style="background:var(--cream2);margin-top:14px">
-        <code style="color:var(--ink)">給 Codex 用：$review-app-builder　｜　給 Claude Code 用：/review-app-builder</code>
-        <button onclick="copySkillGuide(this)">複製安裝說明</button>
-        <a class="viewbtn" href="downloads/複習程式Skill_安裝說明.md" download style="border-radius:7px;padding:7px 12px;font-size:12px">下載</a>
+      <h3>第一次使用小程式製作？先安裝 Skill</h3>
+      <p>Skill 是給 Codex / Claude 看的製作規則。第一次使用時，先選你正在用的工具，只複製那一份安裝說明貼給 AI。安裝完成後，以後只要填下方任務 MD 就可以。</p>
+      <div class="skill-install-grid">
+        <div class="skill-install-card">
+          <h4><img src="assets/codex-logo.png" alt="" style="width:24px;height:24px;object-fit:contain">給 Codex</h4>
+          <p>如果你用 Codex，就只複製這份。安裝完成後，下方也選「給 Codex」。</p>
+          <code>$review-app-builder</code>
+          <div class="skill-actions">
+            <button class="copybtn" onclick="copySkillGuide(this,'codex')">複製 Codex 安裝說明</button>
+            <a class="viewbtn secondary" href="downloads/複習程式Skill_Codex安裝說明.md" download style="border-radius:8px;padding:7px 12px;font-size:12px">下載 Codex 安裝 MD</a>
+          </div>
+        </div>
+        <div class="skill-install-card">
+          <h4><img src="assets/claude-logo.png" alt="" style="width:24px;height:24px;object-fit:contain">給 Claude</h4>
+          <p>如果你用 Claude Code，就只複製這份。安裝完成後，下方也選「給 Claude」。</p>
+          <code>/review-app-builder</code>
+          <div class="skill-actions">
+            <button class="copybtn" onclick="copySkillGuide(this,'claude')">複製 Claude 安裝說明</button>
+            <a class="viewbtn secondary" href="downloads/複習程式Skill_Claude安裝說明.md" download style="border-radius:8px;padding:7px 12px;font-size:12px">下載 Claude 安裝 MD</a>
+          </div>
+        </div>
       </div>
-      <p style="font-size:13px;color:var(--ink-soft);margin-top:10px">若老師還沒安裝 Skill，也可以先複製下方產生的 MD 任務直接使用；只是有 Skill 時，AI 會更懂這類小程式的固定流程。</p>
+      <p style="font-size:13px;color:var(--ink-soft);margin-top:14px">如果已經安裝過 Skill，可以跳過這一段，直接填下面表單，按「複製小程式任務 MD」。</p>
     </div>
 
     <div class="flow-head" style="margin-top:0">
@@ -1026,8 +1049,9 @@ function copyText(btn){
     setTimeout(()=>{btn.textContent=t; btn.classList.remove('done')},1600);
   });
 }
-function copySkillGuide(btn){
-  fetch('downloads/複習程式Skill_安裝說明.md').then(r=>r.text()).then(txt=>{
+function copySkillGuide(btn, tool){
+  const file = tool==='claude'?'downloads/複習程式Skill_Claude安裝說明.md':'downloads/複習程式Skill_Codex安裝說明.md';
+  fetch(file).then(r=>r.text()).then(txt=>{
     navigator.clipboard.writeText(txt).then(()=>{
       const t=btn.textContent; btn.textContent='✓ 已複製'; btn.classList.add('done');
       setTimeout(()=>{btn.textContent=t; btn.classList.remove('done')},1600);

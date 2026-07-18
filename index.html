@@ -379,7 +379,7 @@ header.hero.page-el.on{display:flex}
       <a href="#" data-pg="install" onclick="showPage('install');return false">AI 安裝</a>
       <a href="#" data-pg="md" onclick="showPage('md');return false">MD 文件</a>
       <a href="#" data-pg="agent" onclick="showPage('agent');return false">實戰練習</a>
-      <a href="#" data-pg="teacher" onclick="showPage('teacher');return false">老師作業</a>
+      <a href="#" data-pg="teacher" onclick="showPage('teacher');return false">小程式製作</a>
       <a href="#" data-pg="case" onclick="showPage('case');return false">案例分享</a>
     </div>
   </div>
@@ -711,34 +711,34 @@ header.hero.page-el.on{display:flex}
   </div>
 </section>
 
-<!-- 老師作業小程式 -->
+<!-- 小程式製作 -->
 <section id="teacher" class="tint page-el" data-pg="teacher">
   <div class="wrap">
-    <div class="eyebrow">06 · 老師作業</div>
+    <div class="eyebrow">06 · 小程式製作</div>
     <h2 class="title">把一個資料夾，變成學生回家作業小程式</h2>
     <p class="lead">老師把題目、答案、圖片或 PDF 放在同一個資料夾，再把下面產生的任務貼給 Codex 或 Claude。AI 會讀資料夾內容，做成手機可用、可回收作答結果的網頁版作業。</p>
 
     <div class="grid g3" style="margin-bottom:28px">
       <div class="card">
         <div class="badge">1</div>
-        <h3>不用學生帳號密碼</h3>
-        <p>第一版建議讓學生填班級、座號、姓名即可。登入系統會增加很多建置和維護成本，等真的需要再升級。</p>
+        <h3>下載複習學習 Skill</h3>
+        <p>先把「複習程式 Skill」安裝到 Codex 或 Claude，讓 AI 讀得懂題目整理、作業製作、手機驗收與上線流程。</p>
       </div>
       <div class="card">
         <div class="badge">2</div>
-        <h3>結果進 Google Sheet</h3>
-        <p>學生交卷後寫入試算表，老師可以看提交時間、分數、錯題、是否完成。</p>
+        <h3>準備題目和解析文件</h3>
+        <p>把題目、答案、解析、圖片或 PDF 放進同一個資料夾。檔名不用完美，但資料要盡量完整。</p>
       </div>
       <div class="card">
         <div class="badge">3</div>
-        <h3>用共用 Skill 加速</h3>
-        <p>Codex 用 <strong>$review-app-builder</strong>，Claude Code 用 <strong>/review-app-builder</strong>，讓類似作業小程式更快做出來。</p>
+        <h3>填寫 MD 交給 AI</h3>
+        <p>在下方填好老師資料、資料夾位置、題型和結果回收方式，複製右側 MD 貼給 Codex 或 Claude 開始製作。</p>
       </div>
     </div>
 
     <div class="flow-head" style="margin-top:0">
       <span style="font-size:26px">📚</span>
-      <h3>老師作業任務產生器</h3><span class="ftag">推薦一版</span>
+      <h3>小程式製作任務產生器</h3>
     </div>
     <div class="tool-switch" id="teacherSw">
       <button class="on" onclick="setTeacherTool('codex')"><img src="assets/codex-logo.png">給 Codex</button>
@@ -764,9 +764,7 @@ header.hero.page-el.on{display:flex}
         <div class="chips" id="hw_types">
           <span class="chip on" onclick="togTeacherChip(this)">選擇</span>
           <span class="chip" onclick="togTeacherChip(this)">填空</span>
-          <span class="chip" onclick="togTeacherChip(this)">配合</span>
           <span class="chip" onclick="togTeacherChip(this)">閱讀</span>
-          <span class="chip" onclick="togTeacherChip(this)">手寫</span>
         </div>
         <label>是否要顯示解析</label>
         <select id="hw_explain" onchange="genTeacherTask()">
@@ -791,7 +789,7 @@ header.hero.page-el.on{display:flex}
       </div>
 
       <div class="output">
-        <div class="ohead"><span class="fname" id="teacherFname">老師作業小程式任務.md</span><button class="copybtn" onclick="copyScript(this)">複製</button></div>
+        <div class="ohead"><span class="fname" id="teacherFname">小程式製作任務.md</span><button class="copybtn" onclick="copyScript(this)">複製</button></div>
         <pre id="teacherScript"></pre>
       </div>
     </div>
@@ -1002,7 +1000,7 @@ function copyText(btn){
     setTimeout(()=>{btn.textContent=t; btn.classList.remove('done')},1600);
   });
 }
-// 老師作業小程式任務產生器
+// 小程式製作任務產生器
 let teacherTool='codex';
 function setTeacherTool(t){
   teacherTool=t;

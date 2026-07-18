@@ -721,7 +721,7 @@ header.hero.page-el.on{display:flex}
     <div class="grid g3" style="margin-bottom:28px">
       <div class="card">
         <div class="badge">1</div>
-        <h3>下載複習學習 Skill</h3>
+        <h3>下載複習程式 Skill</h3>
         <p>先把「複習程式 Skill」安裝到 Codex 或 Claude，讓 AI 讀得懂題目整理、作業製作、手機驗收與上線流程。</p>
       </div>
       <div class="card">
@@ -734,6 +734,17 @@ header.hero.page-el.on{display:flex}
         <h3>填寫 MD 交給 AI</h3>
         <p>在下方填好老師資料、資料夾位置、題型和結果回收方式，複製右側 MD 貼給 Codex 或 Claude 開始製作。</p>
       </div>
+    </div>
+
+    <div class="card" style="background:#fff;margin-bottom:28px">
+      <h3>什麼是「複習程式 Skill」？</h3>
+      <p>它是一份給 Codex／Claude 看的製作規則。老師不用理解技術細節，只要先安裝這份 Skill，之後把題目資料夾和下方 MD 任務交給 AI，就能更穩定地做出複習、測驗、作業回收小程式。</p>
+      <div class="cmd" style="background:var(--cream2);margin-top:14px">
+        <code style="color:var(--ink)">給 Codex 用：$review-app-builder　｜　給 Claude Code 用：/review-app-builder</code>
+        <button onclick="copySkillGuide(this)">複製安裝說明</button>
+        <a class="viewbtn" href="downloads/複習程式Skill_安裝說明.md" download style="border-radius:7px;padding:7px 12px;font-size:12px">下載</a>
+      </div>
+      <p style="font-size:13px;color:var(--ink-soft);margin-top:10px">若老師還沒安裝 Skill，也可以先複製下方產生的 MD 任務直接使用；只是有 Skill 時，AI 會更懂這類小程式的固定流程。</p>
     </div>
 
     <div class="flow-head" style="margin-top:0">
@@ -998,6 +1009,14 @@ function copyText(btn){
   navigator.clipboard.writeText(btn.dataset.copy).then(()=>{
     const t=btn.textContent; btn.textContent='✓ 已複製'; btn.classList.add('done');
     setTimeout(()=>{btn.textContent=t; btn.classList.remove('done')},1600);
+  });
+}
+function copySkillGuide(btn){
+  fetch('downloads/複習程式Skill_安裝說明.md').then(r=>r.text()).then(txt=>{
+    navigator.clipboard.writeText(txt).then(()=>{
+      const t=btn.textContent; btn.textContent='✓ 已複製'; btn.classList.add('done');
+      setTimeout(()=>{btn.textContent=t; btn.classList.remove('done')},1600);
+    });
   });
 }
 // 小程式製作任務產生器

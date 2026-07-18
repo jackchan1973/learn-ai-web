@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>學習 AI 和未來一起成長</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231c1815'/%3E%3Ccircle cx='20' cy='20' r='7' fill='%23c8724f'/%3E%3Cpath d='M20 44h24M32 20v24' stroke='%23f4efe9' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
 <style>
 :root{
   --bg-dark:#1c1815;
@@ -378,6 +379,7 @@ header.hero.page-el.on{display:flex}
       <a href="#" data-pg="install" onclick="showPage('install');return false">AI 安裝</a>
       <a href="#" data-pg="md" onclick="showPage('md');return false">MD 文件</a>
       <a href="#" data-pg="agent" onclick="showPage('agent');return false">實戰練習</a>
+      <a href="#" data-pg="teacher" onclick="showPage('teacher');return false">老師作業</a>
       <a href="#" data-pg="case" onclick="showPage('case');return false">案例分享</a>
     </div>
   </div>
@@ -709,10 +711,108 @@ header.hero.page-el.on{display:flex}
   </div>
 </section>
 
+<!-- 老師作業小程式 -->
+<section id="teacher" class="tint page-el" data-pg="teacher">
+  <div class="wrap">
+    <div class="eyebrow">06 · 老師作業</div>
+    <h2 class="title">把一個資料夾，變成學生回家作業小程式</h2>
+    <p class="lead">老師把題目、答案、圖片或 PDF 放在同一個資料夾，再把下面產生的任務貼給 Codex 或 Claude。AI 會讀資料夾內容，做成手機可用、可回收作答結果的網頁版作業。</p>
+
+    <div class="grid g3" style="margin-bottom:28px">
+      <div class="card">
+        <div class="badge">1</div>
+        <h3>不用學生帳號密碼</h3>
+        <p>第一版建議讓學生填班級、座號、姓名即可。登入系統會增加很多建置和維護成本，等真的需要再升級。</p>
+      </div>
+      <div class="card">
+        <div class="badge">2</div>
+        <h3>結果進 Google Sheet</h3>
+        <p>學生交卷後寫入試算表，老師可以看提交時間、分數、錯題、是否完成。</p>
+      </div>
+      <div class="card">
+        <div class="badge">3</div>
+        <h3>用共用 Skill 加速</h3>
+        <p>Codex 用 <strong>$review-app-builder</strong>，Claude Code 用 <strong>/review-app-builder</strong>，讓類似作業小程式更快做出來。</p>
+      </div>
+    </div>
+
+    <div class="flow-head" style="margin-top:0">
+      <span style="font-size:26px">📚</span>
+      <h3>老師作業任務產生器</h3><span class="ftag">推薦一版</span>
+    </div>
+    <div class="tool-switch" id="teacherSw">
+      <button class="on" onclick="setTeacherTool('codex')"><img src="assets/codex-logo.png">給 Codex</button>
+      <button onclick="setTeacherTool('claude')"><img src="assets/claude-logo.png">給 Claude</button>
+    </div>
+    <div class="gen" style="margin-bottom:0">
+      <div class="form">
+        <label>老師姓名</label>
+        <input id="hw_teacher" value="王老師" oninput="genTeacherTask()">
+        <label>學校 / 年級 / 班級</label>
+        <input id="hw_class" value="上海台商子女學校 / 高一 / 1 班" oninput="genTeacherTask()">
+        <label>科目</label>
+        <input id="hw_subject" value="英文" oninput="genTeacherTask()">
+        <label>單元名稱</label>
+        <input id="hw_unit" value="Unit 3 單字與閱讀" oninput="genTeacherTask()">
+        <label>作業名稱</label>
+        <input id="hw_title" value="Unit 3 回家複習作業" oninput="genTeacherTask()">
+        <label>題目資料夾位置</label>
+        <input id="hw_folder" value="/Users/你的名字/Desktop/Unit3作業資料夾" oninput="genTeacherTask()">
+        <label>答案檔案位置</label>
+        <input id="hw_answer" value="同一資料夾內的答案檔，或 answer.pdf / answer.docx / answer.xlsx" oninput="genTeacherTask()">
+        <label>題型（可多選）</label>
+        <div class="chips" id="hw_types">
+          <span class="chip on" onclick="togTeacherChip(this)">選擇</span>
+          <span class="chip" onclick="togTeacherChip(this)">填空</span>
+          <span class="chip" onclick="togTeacherChip(this)">配合</span>
+          <span class="chip" onclick="togTeacherChip(this)">閱讀</span>
+          <span class="chip" onclick="togTeacherChip(this)">手寫</span>
+        </div>
+        <label>是否要顯示解析</label>
+        <select id="hw_explain" onchange="genTeacherTask()">
+          <option>要，答完後顯示解析</option>
+          <option>不要，只顯示分數</option>
+          <option>老師確認後再決定</option>
+        </select>
+        <label>是否要學生填姓名</label>
+        <select id="hw_name_required" onchange="genTeacherTask()">
+          <option>要，必填班級、座號、姓名</option>
+          <option>只填座號和姓名</option>
+          <option>不要，匿名練習</option>
+        </select>
+        <label>是否需要老師查看結果</label>
+        <select id="hw_results" onchange="genTeacherTask()">
+          <option>要，用 Google Sheet 回收結果</option>
+          <option>要，但先做本機匯出 CSV</option>
+          <option>不要，只讓學生自我練習</option>
+        </select>
+        <label>預計使用日期</label>
+        <input id="hw_date" value="2026-09-01" oninput="genTeacherTask()">
+      </div>
+
+      <div class="output">
+        <div class="ohead"><span class="fname" id="teacherFname">老師作業小程式任務.md</span><button class="copybtn" onclick="copyScript(this)">複製</button></div>
+        <pre id="teacherScript"></pre>
+      </div>
+    </div>
+
+    <div class="grid g2" style="margin-top:28px">
+      <div class="card">
+        <h3>老師怎麼看誰做了、誰沒做？</h3>
+        <p>作業頁面送出資料到 Google Sheet。試算表建議欄位：班級、座號、姓名、提交時間、分數、答題明細、錯題、使用裝置。老師再貼一份學生名單，AI 可幫忙比對未完成名單。</p>
+      </div>
+      <div class="card">
+        <h3>什麼時候才需要登入？</h3>
+        <p>如果只是回家作業和課前練習，先不用登入。若未來要長期保存個人成績、避免冒名、做跨班級排行榜，再升級成 Firebase 或 Supabase 帳號系統。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- 案例分享 -->
 <section id="case" class="dark page-el" data-pg="case">
   <div class="wrap">
-    <div class="eyebrow">06 · 案例分享</div>
+    <div class="eyebrow">07 · 案例分享</div>
     <h2 class="title">看看能做出什麼</h2>
     <p class="lead">下面是用 Claude 和 Codex 協作做出來的實際成果，都是不懂程式也能完成的小工具。</p>
     <div class="grid g2">
@@ -902,6 +1002,82 @@ function copyText(btn){
     setTimeout(()=>{btn.textContent=t; btn.classList.remove('done')},1600);
   });
 }
+// 老師作業小程式任務產生器
+let teacherTool='codex';
+function setTeacherTool(t){
+  teacherTool=t;
+  document.querySelectorAll('#teacherSw button').forEach((b,i)=>b.classList.toggle('on',(t==='codex')===(i===0)));
+  genTeacherTask();
+}
+function togTeacherChip(el){el.classList.toggle('on');genTeacherTask()}
+function val(id){return (document.getElementById(id).value||'').trim()||'＿＿'}
+function genTeacherTask(){
+  const typeList=[...document.querySelectorAll('#hw_types .chip.on')].map(c=>c.textContent).join('、')||'請依資料判斷';
+  const toolName=teacherTool==='codex'?'Codex':'Claude Code';
+  const skillCall=teacherTool==='codex'?'$review-app-builder':'/review-app-builder';
+  const folder=val('hw_folder');
+  const resultMode=val('hw_results');
+  const sheetBlock=resultMode.includes('Google Sheet')?
+`- 需要建立或說明 Google Sheet 回收方式。
+- 送出欄位至少包含：班級、座號、姓名、提交時間、分數、答題明細、錯題、使用裝置。
+- 另做一個老師查看頁或說明，方便用學生名單比對誰尚未完成。`:
+`- 依「${resultMode}」設計結果保存方式。
+- 若不接後端，至少提供清楚的匯出或自我檢查方式。`;
+  document.getElementById('teacherScript').textContent=
+`# ${val('hw_title')}
+
+請使用 ${skillCall} 協助我製作一個「網頁版學生回家作業小程式」。
+
+## 1. 基本資料
+- 老師姓名：${val('hw_teacher')}
+- 學校 / 年級 / 班級：${val('hw_class')}
+- 科目：${val('hw_subject')}
+- 單元名稱：${val('hw_unit')}
+- 作業名稱：${val('hw_title')}
+- 預計使用日期：${val('hw_date')}
+
+## 2. 資料位置
+- 題目資料夾位置：${folder}
+- 答案檔案位置：${val('hw_answer')}
+- 請先讀取資料夾內所有題目、答案、圖片、PDF、Word、Excel。
+- 若資料不完整或題目答案無法確認，請先列出問題給我確認，不要自行猜測。
+
+## 3. 題型與作答
+- 題型：${typeList}
+- 解析設定：${val('hw_explain')}
+- 學生身份欄位：${val('hw_name_required')}
+- 老師查看結果：${resultMode}
+
+## 4. 第一版建議
+- 不做學生帳號密碼登入。
+- 學生進入網頁後填班級、座號、姓名，再開始作答。
+- 手機和電腦都要能正常使用。
+- 題目順序、答案、解析都以我提供的資料為準。
+
+## 5. 老師查看結果
+${sheetBlock}
+
+## 6. 工作流程
+1. 先分析「${folder}」裡有哪些檔案，列出你讀到的題目、答案、題型與疑問。
+2. 等我確認資料整理結果後，再製作網頁版作業小程式。
+3. 完成功能：學生填資料、作答、送出、自動判分、顯示結果或解析。
+4. 驗證手機版與電腦版畫面，確認文字不重疊、按鈕可點、答案判分正確。
+5. 若我要上線，請協助發布成公開網址，方便學生回家使用。
+
+## 7. 驗收標準
+- 題目與答案正確，不可擅自改題。
+- 學生可順利作答與送出。
+- 老師可快速看到完成名單、未完成名單或可匯出的結果。
+- 手機直向畫面可讀、可點、不卡住。
+
+## 8. 交付內容
+- 網頁版作業小程式。
+- 老師使用說明。
+- 學生使用網址或本機預覽方式。
+- 若有 Google Sheet，請附設定步驟與欄位說明。
+
+使用工具：${toolName}`;
+}
 // 專項任務 MD 產生器
 const taskPresets={
   ppt:{name:'把資料做成一份 PPT', goal:'把我提供的資料整理成一份清楚好懂的簡報', who:'給＿＿看（例如：學生、同事、家長）', tone:'繁體中文，白話清楚，先講結論，再補充細節。',
@@ -964,6 +1140,7 @@ function copyScript(btn){
   });
 }
 setTask('ppt');
+genTeacherTask();
 function copyMd(){
   const txt=document.getElementById('mdout').innerText;
   navigator.clipboard.writeText(txt).then(()=>{

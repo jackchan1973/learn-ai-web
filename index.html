@@ -333,6 +333,8 @@ footer{background:#15110e;color:#7d726a;text-align:center;padding:26px 20px;font
 .flowin label{display:block;font-size:13.5px;font-weight:800;margin-bottom:7px}
 .flowin input{width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:9px;font-size:15px;font-family:var(--font);color:var(--ink)}
 .flowin input:focus{outline:none;border-color:var(--terra)}
+.field-note{font-size:12.5px;color:var(--ink-soft);margin-top:4px;line-height:1.5}
+.form textarea.tall{min-height:96px}
 
 /* ===== 案例縮圖與看成品按鈕 ===== */
 .case-thumb{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:10px;border:1px solid rgba(255,255,255,.12)}
@@ -755,7 +757,7 @@ header.hero.page-el.on{display:flex}
       <button class="on" onclick="setTeacherTool('codex')"><img src="assets/codex-logo.png">給 Codex</button>
       <button onclick="setTeacherTool('claude')"><img src="assets/claude-logo.png">給 Claude</button>
     </div>
-    <div class="gen" style="margin-bottom:0">
+    <div class="gen" id="review-app-generator" style="margin-bottom:0">
       <div class="form">
         <label>老師姓名</label>
         <input id="hw_teacher" value="王老師" oninput="genTeacherTask()">
@@ -771,6 +773,11 @@ header.hero.page-el.on{display:flex}
         <input id="hw_folder" value="/Users/你的名字/Desktop/Unit3作業資料夾" oninput="genTeacherTask()">
         <label>答案檔案位置</label>
         <input id="hw_answer" value="同一資料夾內的答案檔，或 answer.pdf / answer.docx / answer.xlsx" oninput="genTeacherTask()">
+        <label>資料來源模式</label>
+        <select id="hw_source_mode" onchange="genTeacherTask()">
+          <option>有題目資料夾，請先讀取我提供的檔案</option>
+          <option>沒有資料夾，先用 AI 產生測試題</option>
+        </select>
         <label>題型（可多選）</label>
         <div class="chips" id="hw_types">
           <span class="chip on" onclick="togTeacherChip(this)">選擇</span>
@@ -795,12 +802,14 @@ header.hero.page-el.on{display:flex}
           <option>要，但先做本機匯出 CSV</option>
           <option>不要，只讓學生自我練習</option>
         </select>
+        <label>介面要求</label>
+        <textarea id="hw_ui" rows="4" class="tall" oninput="genTeacherTask()">學生手機優先；題目卡片不可壓線或超出框；選項要大顆好點；答題後顯示答對/答錯顏色；解析可展開收合；手機 390px 必須驗收截圖。</textarea>
         <label>預計使用日期</label>
         <input id="hw_date" value="2026-09-01" oninput="genTeacherTask()">
       </div>
 
       <div class="output">
-        <div class="ohead"><span class="fname" id="teacherFname">小程式製作任務.md</span><button class="copybtn" onclick="copyScript(this)">複製</button></div>
+        <div class="ohead"><span class="fname" id="teacherFname">小程式製作任務.md</span><button class="copybtn" aria-label="複製小程式任務 MD" onclick="copyScript(this)">複製小程式任務 MD</button></div>
         <pre id="teacherScript"></pre>
       </div>
     </div>
@@ -875,7 +884,7 @@ header.hero.page-el.on{display:flex}
       <button class="on" onclick="setTask('ppt')"><img src="assets/codex-logo.png">PPT 任務（Codex）</button>
       <button onclick="setTask('web')"><img src="assets/claude-logo.png">網頁任務（Claude）</button>
     </div>
-    <div class="gen" style="margin-bottom:0">
+    <div class="gen" id="task-md-generator" style="margin-bottom:0">
       <div class="form">
         <label>任務名稱</label>
         <input id="t_name" oninput="genTask()">
@@ -887,19 +896,23 @@ header.hero.page-el.on{display:flex}
         <input id="t_tone" oninput="genTask()">
         <label>4. 工作流程（一行一步）</label>
         <textarea id="t_flow" rows="6" oninput="genTask()"></textarea>
-        <label>5. 資料依據</label>
+        <label>5. 專業程度 / 功能深度</label>
+        <textarea id="t_quality" rows="4" class="tall" oninput="genTask()"></textarea>
+        <label>6. 資料依據</label>
         <input id="t_data" oninput="genTask()">
-        <label>6. 輸出格式</label>
+        <label>7. 輸出格式</label>
         <input id="t_out" oninput="genTask()">
-        <label>7. 禁止事項</label>
+        <label>8. 視覺與介面要求</label>
+        <textarea id="t_visual" rows="4" class="tall" oninput="genTask()"></textarea>
+        <label>9. 禁止事項</label>
         <input id="t_no" oninput="genTask()">
-        <label>8. 驗收標準</label>
+        <label>10. 驗收標準</label>
         <input id="t_check" oninput="genTask()">
-        <label>9. 交付內容</label>
+        <label>11. 交付內容</label>
         <input id="t_deliver" oninput="genTask()">
       </div>
       <div class="output">
-        <div class="ohead"><span class="fname" id="taskFname">簡報任務.md</span><button class="copybtn" onclick="copyScript(this)">複製</button></div>
+        <div class="ohead"><span class="fname" id="taskFname">簡報任務.md</span><button class="copybtn" id="taskCopyBtn" aria-label="複製 PPT 任務 MD" onclick="copyScript(this)">複製 PPT 任務 MD</button></div>
         <pre id="taskScript"></pre>
       </div>
     </div>
@@ -1033,7 +1046,24 @@ function genTeacherTask(){
   const toolName=teacherTool==='codex'?'Codex':'Claude Code';
   const skillCall=teacherTool==='codex'?'$review-app-builder':'/review-app-builder';
   const folder=val('hw_folder');
+  const sourceMode=val('hw_source_mode');
   const resultMode=val('hw_results');
+  const hasFolder=sourceMode.includes('有題目資料夾');
+  const sourceBlock=hasFolder?
+`- 題目資料夾位置：${folder}
+- 答案檔案位置：${val('hw_answer')}
+- 請先讀取資料夾內所有題目、答案、圖片、PDF、Word、Excel。
+- 若資料不完整或題目答案無法確認，請先列出問題給我確認，不要自行猜測。`:
+`- 資料來源模式：沒有資料夾，先用 AI 產生測試題。
+- 請先依「${val('hw_class')}／${val('hw_subject')}／${val('hw_unit')}」產生一組可測試題庫。
+- 第一版建議產生 8 到 12 題，含題目、選項、正確答案、白話解析。
+- 題目要符合年級程度，不可太難；若不確定課綱難度，請先列出假設。`;
+  const workflowFirst=hasFolder?
+`1. 先分析「${folder}」裡有哪些檔案，列出你讀到的題目、答案、題型與疑問。`:
+`1. 先依年級、科目、單元產生測試題庫，列出題目、答案、解析與難度假設給我確認。`;
+  const authorityLine=hasFolder?
+`- 題目順序、答案、解析都以我提供的資料為準。`:
+`- 題目、答案、解析以你產生並經我確認的測試題庫為準。`;
   const sheetBlock=resultMode.includes('Google Sheet')?
 `- 需要建立或說明 Google Sheet 回收方式。
 - 送出欄位至少包含：班級、座號、姓名、提交時間、分數、答題明細、錯題、使用裝置。
@@ -1054,10 +1084,7 @@ function genTeacherTask(){
 - 預計使用日期：${val('hw_date')}
 
 ## 2. 資料位置
-- 題目資料夾位置：${folder}
-- 答案檔案位置：${val('hw_answer')}
-- 請先讀取資料夾內所有題目、答案、圖片、PDF、Word、Excel。
-- 若資料不完整或題目答案無法確認，請先列出問題給我確認，不要自行猜測。
+${sourceBlock}
 
 ## 3. 題型與作答
 - 題型：${typeList}
@@ -1069,25 +1096,33 @@ function genTeacherTask(){
 - 不做學生帳號密碼登入。
 - 學生進入網頁後填班級、座號、姓名，再開始作答。
 - 手機和電腦都要能正常使用。
-- 題目順序、答案、解析都以我提供的資料為準。
+${authorityLine}
+- 不要用 fieldset/legend 做題目卡，避免題目文字壓到框線；請用 div.question-card + h3 題目標題。
+- 題目卡片高度要由內容自然撐開，不可固定過高或過低。
+- 選項要適合小學生手機點選，每個選項至少 44px 高。
 
 ## 5. 老師查看結果
 ${sheetBlock}
 
-## 6. 工作流程
-1. 先分析「${folder}」裡有哪些檔案，列出你讀到的題目、答案、題型與疑問。
+## 6. 介面與手機要求
+${val('hw_ui')}
+
+## 7. 工作流程
+${workflowFirst}
 2. 等我確認資料整理結果後，再製作網頁版作業小程式。
 3. 完成功能：學生填資料、作答、送出、自動判分、顯示結果或解析。
 4. 驗證手機版與電腦版畫面，確認文字不重疊、按鈕可點、答案判分正確。
 5. 若我要上線，請協助發布成公開網址，方便學生回家使用。
 
-## 7. 驗收標準
+## 8. 驗收標準
 - 題目與答案正確，不可擅自改題。
 - 學生可順利作答與送出。
 - 老師可快速看到完成名單、未完成名單或可匯出的結果。
 - 手機直向畫面可讀、可點、不卡住。
+- 題目標題不可壓到卡片邊框或超出容器。
+- 請用桌機與手機 390px 實測，並回報測試結果。
 
-## 8. 交付內容
+## 9. 交付內容
 - 網頁版作業小程式。
 - 老師使用說明。
 - 學生使用網址或本機預覽方式。
@@ -1097,23 +1132,30 @@ ${sheetBlock}
 }
 // 專項任務 MD 產生器
 const taskPresets={
-  ppt:{name:'把資料做成一份 PPT', goal:'把我提供的資料整理成一份清楚好懂的簡報', who:'給＿＿看（例如：學生、同事、家長）', tone:'繁體中文，白話清楚，先講結論，再補充細節。',
-    flow:'1. 讀我的資料，或上網找資料，整理成重點\n2. 列出重點和關鍵數據，標上來源頁數，我確認後再做\n3. 把數據做成圖表\n4. 用重點和圖表做成 10 頁簡報\n5. 給我看後再微調',
-    data:'以我提供的資料與官方來源為準，不確定的內容要標註，不可以亂猜。', out:'一份 PPT，含圖表；重點用條列，畫面清楚。',
-    no:'不可自行刪除、覆蓋、發布或修改重要資料，除非我明確同意。', check:'內容正確、圖表清楚、頁數合理、符合我的需求。', deliver:'列出做了哪些內容、用了哪些資料、還有哪些建議。',
+  ppt:{name:'分析未來 AI 發展，製作專業簡報', goal:'上網收集最新且可靠的資料，整理未來 AI 發展趨勢，製作一份有觀點、有數據、有來源、適合正式分享的專業 PPT。', who:'給 AI 初學者、家長、一般使用者或社群分享聽眾看', tone:'繁體中文，白話清楚，但要有專業分析感；先講結論，再用數據和案例支撐。',
+    flow:'1. 先上網查找最新資料，優先使用官方報告、研究機構、科技公司公告與可信媒體\n2. 整理核心觀點，不要只堆資料；每頁都要有一句清楚結論\n3. 挑選 3 到 5 個可信來源，列出來源名稱、日期、連結與可引用重點\n4. 先規劃簡報大綱：每頁標題、核心訊息、需要的圖表或圖片\n5. 生成一張符合主題的封面圖片，並註明是否「含標題」或「不含標題」\n6. 製作 PPT，內容要像正式分享簡報，不要像臨時筆記\n7. 完成後自我檢查：頁數、來源、文字是否過多、畫面是否專業',
+    quality:'專業程度：中高階到顧問級。每頁必須包含「頁面主張、關鍵依據、對一般人的意義」。避免空泛詞，例如趨勢、賦能、革新，除非有具體案例或數據支撐。請把資料轉成洞察，不要只是摘要。',
+    data:'資料必須可追溯，至少 3 個來源；優先官方報告、研究報告、上市公司或科技公司公告。使用最新資料時要標日期；不確定或推測內容要明確標註。', out:'一份 PPT，頁數依需求設定；含封面、重點頁、圖表或資訊圖、來源頁或頁腳來源。重點用條列，但每頁文字不要過多。',
+    visual:'封面圖片可用 AI 生成，但不要冒充官方截圖。若封面圖本身含標題，PPT 不要再疊同樣標題。整體風格要一致，留白足夠，字體大、層級清楚，圖表要能一眼看懂。',
+    no:'不可引用沒有來源的數據；不可生成假官方截圖；不可把新聞標題當成結論；不可自行發布或覆蓋重要資料。', check:'內容專業、有清楚觀點；每頁只有一個主要訊息；來源可追溯；圖表清楚；封面圖片符合主題；桌機播放無文字重疊或超出。', deliver:'交付 PPT 檔、封面圖片、資料來源清單、每頁重點摘要、測試與修改建議。',
     fname:'簡報任務.md', goalText:'🎯 課後成品：一份有數據圖表的 PPT'},
-  web:{name:'做一個小網頁並發佈上線', goal:'做一個小網頁，手機也能開，並發佈成公開網址', who:'給＿＿用（例如：學生、朋友）', tone:'繁體中文，白話清楚，先講結論，再補充細節。',
-    flow:'1. 開一個新專案，選一個空資料夾\n2. 讀我的 MD 規則\n3. 做出小網頁，本機打開給我看\n4. 發佈到 GitHub Pages，給我網址\n5. 我確認後再分享',
-    data:'以我提供的內容為準，不確定的內容要標註，不可以亂猜。', out:'一個純網頁（單一 HTML），手機電腦都能開。',
-    no:'不可自行刪除、覆蓋、發布或修改重要資料，除非我明確同意。', check:'手機電腦都正常、功能可用、網址能打開。', deliver:'列出做了哪些功能、哪些檔案、網址、還有哪些建議。',
+  web:{name:'做一個功能完整的小網頁並發佈上線', goal:'做一個手機也能開的小網頁，不只是展示文字，還要有實用互動功能，完成後可本機預覽並視需要發布成公開網址。', who:'給 AI 初學者、學生、朋友或家長使用', tone:'繁體中文，白話清楚、有親和力，不要太技術化；先講結論，再補充細節。',
+    flow:'1. 開一個新專案，選一個空資料夾\n2. 讀我的 MD 規則，先列出網站架構與功能清單\n3. 做出第一版小網頁，本機打開給我看\n4. 實測所有按鈕、表單、切換、複製或儲存功能\n5. 用手機寬度檢查文字不重疊、按鈕可點\n6. 我確認後，再協助發布到 GitHub Pages 或其他公開網址',
+    quality:'功能深度：至少要有 3 個實用互動功能，例如分類切換、搜尋/篩選、表單輸入、複製指令、本機儲存、練習題、結果回饋或下載。不要只做靜態介紹頁，除非我明確說只要展示頁。',
+    data:'以我提供的內容為準；若需要補充資料，先標註來源與假設。不確定的內容要標註，不可以亂猜。', out:'一個可直接打開的網頁；手機和電腦都能使用；若是單頁網站，可以用單一 HTML，也可以依專案需要拆成 CSS/JS 檔。',
+    visual:'手機優先設計；導覽清楚；按鈕、表單、卡片間距舒適；避免文字太擠；所有按鈕要有明確狀態。若主題適合，加入圖片、圖示或示意視覺，但不要用假官方介面。',
+    no:'不可自行刪除、覆蓋、發布或修改重要資料，除非我明確同意；不可使用假官方截圖；不可做只有外觀、沒有功能的空殼頁。', check:'手機 390px 與桌機都正常；所有互動功能可用；console 無錯誤；文字不重疊；連結可點；發布網址能打開。', deliver:'列出做了哪些功能、哪些檔案、本機預覽方式、發布網址、測試結果與後續建議。',
     fname:'網頁任務.md', goalText:'🎯 課後成品：一個手機掃碼就能開的網頁'}
 };
 function setTask(k){
   const p=taskPresets[k];
   t_name.value=p.name; t_goal.value=p.goal; t_who.value=p.who; t_tone.value=p.tone; t_flow.value=p.flow;
-  t_data.value=p.data; t_out.value=p.out; t_no.value=p.no; t_check.value=p.check; t_deliver.value=p.deliver;
+  t_quality.value=p.quality; t_data.value=p.data; t_out.value=p.out; t_visual.value=p.visual; t_no.value=p.no; t_check.value=p.check; t_deliver.value=p.deliver;
   document.getElementById('taskFname').textContent=p.fname;
   document.getElementById('taskGoal').textContent=p.goalText;
+  const copyBtn=document.getElementById('taskCopyBtn');
+  copyBtn.textContent=k==='ppt'?'複製 PPT 任務 MD':'複製網頁任務 MD';
+  copyBtn.setAttribute('aria-label', copyBtn.textContent);
   document.querySelectorAll('#taskSw button').forEach((b,i)=>b.classList.toggle('on',(k==='ppt')===(i===0)));
   genTask();
 }
@@ -1134,19 +1176,25 @@ ${g('t_tone')}
 ## 4. 工作流程
 ${g('t_flow')}
 
-## 5. 資料依據
+## 5. 專業程度 / 功能深度
+${g('t_quality')}
+
+## 6. 資料依據
 ${g('t_data')}
 
-## 6. 輸出格式
+## 7. 輸出格式
 ${g('t_out')}
 
-## 7. 禁止事項
+## 8. 視覺與介面要求
+${g('t_visual')}
+
+## 9. 禁止事項
 ${g('t_no')}
 
-## 8. 驗收標準
+## 10. 驗收標準
 ${g('t_check')}
 
-## 9. 交付內容
+## 11. 交付內容
 ${g('t_deliver')}`;
 }
 function copyScript(btn){

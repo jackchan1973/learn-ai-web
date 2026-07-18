@@ -802,8 +802,10 @@ header.hero.page-el.on{display:flex}
           <option>要，但先做本機匯出 CSV</option>
           <option>不要，只讓學生自我練習</option>
         </select>
+        <label>參考介面</label>
+        <input id="hw_reference" value="請參考 https://jackchan1973.github.io/vocab-app/ 的學測複習工具效果" oninput="genTeacherTask()">
         <label>介面要求</label>
-        <textarea id="hw_ui" rows="4" class="tall" oninput="genTeacherTask()">學生手機優先；題目卡片不可壓線或超出框；選項要大顆好點；答題後顯示答對/答錯顏色；解析可展開收合；手機 390px 必須驗收截圖。</textarea>
+        <textarea id="hw_ui" rows="4" class="tall" oninput="genTeacherTask()">請做成像「學測複習工具」的完整學習介面：頂部標題列、目前範圍/已學/困難/完成度統計、今日目標進度條、功能分頁、篩選列、中央學習卡或題目卡、上一題/困難/已學/下一題按鈕、家長或老師查看入口。學生手機優先；題目卡片不可壓線或超出框；選項要大顆好點；答題後顯示答對/答錯顏色；解析可展開收合；手機 390px 必須驗收截圖。</textarea>
         <label>預計使用日期</label>
         <input id="hw_date" value="2026-09-01" oninput="genTeacherTask()">
       </div>
@@ -1105,6 +1107,17 @@ ${authorityLine}
 ${sheetBlock}
 
 ## 6. 介面與手機要求
+- 參考介面：${val('hw_reference')}
+- 介面目標不是簡單題目列表，而是完整學習工具。
+- 建議包含：
+  1. 頂部標題列：顯示工具名稱、科目、單元、作業名稱。
+  2. 統計列：目前範圍、已完成、困難題、完成度。
+  3. 今日目標：進度條、今日已完成題數、答對/答錯。
+  4. 功能分頁：練習、測驗、重點複習、錯題、進度、老師/家長查看。
+  5. 篩選列：全部、單元、困難題、隨機排序、順序排列。
+  6. 中央學習卡或題目卡：一題一張卡，畫面乾淨，操作集中。
+  7. 底部操作：上一題、標記困難、已完成/送出、下一題。
+  8. 老師/家長查看：完成狀態、分數、錯題、匯出或回收結果。
 ${val('hw_ui')}
 
 ## 7. 工作流程

@@ -63,13 +63,13 @@ description: Build or scaffold reusable learning-review web apps for elementary,
 - 學測考試總複習：歷屆考題、答題卡練習
 - 回家作業小程式：學生填姓名、作答、自動判分、老師查看結果
 
-使用繁體中文命名使用者看得到的內容。技術資料夾名稱盡量簡短、英文、適合網址使用。
+使用繁體中文命名使用者看得到的內容，**本機資料夾也用中文命名**（好辨識）。只有 GitHub repo／網址的 slug 需要用簡短英文；本機中文資料夾名不影響網址。既有 repo 的英文名不要改（會斷掉線上網址）。
 
 ## 建置流程
 
 1. 檢查或建立專案資料夾。
 2. 保留原始題目檔，不要覆蓋老師提供的資料。
-3. 建立基本文件：`README.md`、`AGENTS.md` 或 `CLAUDE.md`、`交接文件.md`。
+3. 建立基本文件：`README.md`、`CLAUDE.md`（Claude 讀）與 `AGENTS.md`（Codex 讀，內容與 CLAUDE.md 完全相同）、`交接文件.md`、`.gitignore`。
 4. 建立網頁小程式基本結構：`public/index.html`、`src/app.js`、`src/style.css`、`src/question-bank/`、`data/source/`、`data/raw-extract/`、`docs/`。
 5. 先分析資料夾內所有題目、答案、解析、圖片、PDF、Word、Excel。
 6. 列出讀到的題目、答案、題型與疑問，等使用者確認。
@@ -96,6 +96,7 @@ description: Build or scaffold reusable learning-review web apps for elementary,
 - 題組共用文章、表格、圖片只存一次。
 - 作文、手寫、申論題可以顯示，但不要自動判分，除非老師明確要求。
 - 正式考題不可加入 AI 自創題目，除非老師明確要求。
+- **版權**：官方 PDF／老師提供的來源檔絕不進公開 repo。一開始就加 `.gitignore` 排除 `*.pdf`、`資料/`、`data/source/`；上傳時只加改到的檔，絕不用 `git add -A`（會把來源 PDF 一起傳上去）。
 
 ## 回家作業預設
 

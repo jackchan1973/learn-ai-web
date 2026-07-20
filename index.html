@@ -40,7 +40,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .navlinks{display:flex;gap:6px}
 .navlinks a{color:#cfc4ba;text-decoration:none;font-size:14px;font-weight:600;padding:8px 12px;border-radius:10px;transition:.2s;white-space:nowrap}
 .navlinks a:hover{color:#fff;background:rgba(255,255,255,.08)}
-.navtoggle{display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer}
+.navtoggle{display:none;align-items:center;gap:6px;background:rgba(200,114,79,.18);border:1px solid var(--terra);color:#fff;font-size:15px;font-weight:700;padding:7px 14px;border-radius:10px;cursor:pointer}
 
 /* ===== HERO ===== */
 .hero{background:var(--bg-dark);color:#fff;position:relative;overflow:hidden;min-height:88vh;display:flex;align-items:center;padding-top:40px}
@@ -368,9 +368,10 @@ header.hero.page-el.on{display:flex}
   .g3,.g2,.steps,.compare,.gen,.shotwrap,.md-compare,.evo,.flow3,.aflow,.timeline,.skill-install-grid{grid-template-columns:1fr}
   .recipe{grid-template-columns:1fr 1fr}
   .evo-arrow b,.flow3 .arr{transform:rotate(90deg)}
-  .navlinks{position:fixed;top:60px;left:0;right:0;background:var(--bg-dark);flex-direction:column;padding:10px 16px;gap:2px;display:none;border-bottom:1px solid rgba(255,255,255,.1)}
-  .navlinks.open{display:flex}
-  .navtoggle{display:block}
+  nav .wrap{height:auto;padding-top:6px;padding-bottom:6px}
+  .navlinks{display:flex;flex-wrap:wrap;justify-content:center;width:100%;gap:5px}
+  .navlinks a{padding:7px 12px;font-size:13.5px}
+  .navtoggle{display:none}
   .output{position:static}
   .hero{min-height:auto;padding:80px 20px 60px}
   .itabs{flex-direction:column}
@@ -382,8 +383,6 @@ header.hero.page-el.on{display:flex}
 <!-- NAV -->
 <nav>
   <div class="wrap">
-    <div class="brand" onclick="showPage('home')" style="cursor:pointer"><span class="dot"></span>學習 AI</div>
-    <button class="navtoggle" onclick="document.getElementById('nl').classList.toggle('open')">☰</button>
     <div class="navlinks" id="nl">
       <a href="#" data-pg="home" onclick="showPage('home');return false">首頁</a>
       <a href="#" data-pg="install" onclick="showPage('install');return false">AI 安裝</a>

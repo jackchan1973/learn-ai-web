@@ -29,7 +29,7 @@ downloads/                        # 可下載的 Skill 安裝說明 md
 
 ## 開發鐵則
 
-1. **範圍固定**：只做 Claude／Codex **桌面端**，不做終端機版；**不含** Plugins & Skills、Subagent。
+1. **範圍固定**：主軸做 Claude／Codex **桌面端**（不做終端機版）；**另設獨立「MCP／Skills」進階頁**，給有需要的人，只放**詹爸實際用得到、且你我一起實測過**的項目（測過才放）。仍**不含** Subagent。
 2. **純靜態網頁**：改 HTML 後在瀏覽器確認即可，沒有後端與建置步驟。
 3. **素材來源**：`assets/` 圖來自 `~/Desktop/AI安裝教程/` 的簡報；要換圖先確認來源。
 4. 改完直接 `git push` 更新 GitHub Pages。

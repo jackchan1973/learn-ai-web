@@ -1,6 +1,6 @@
 # Claude Code 專用：複習程式 Skill 安裝說明
 
-這份只給 Claude Code 使用。請不要貼到 Codex。
+這份只給 Claude Code 使用。請不要貼到 Codex（Codex 請用「Codex 安裝說明」那一份）。
 
 ## 你要做什麼
 
@@ -25,7 +25,7 @@
 之後製作小程式時，請在任務開頭使用：
 
 ```text
-請使用 /review-app-builder 協助我製作一個網頁版學生回家作業小程式。
+請使用 /review-app-builder，幫我把這個資料夾裡的題目做成學生回家作業小程式。
 ```
 
 ## SKILL.md 內容
@@ -35,7 +35,7 @@
 ```markdown
 ---
 name: review-app-builder
-description: Build or scaffold reusable learning-review web apps for elementary, junior-high, senior-high, exam-prep, homework, or subject-review workflows. Use when the user asks to create 小學學習複習, 國中學習複習, 高中學習複習, 題庫刷題工具, 答題卡練習, 回家作業小程式, 考前複習小程式, or similar apps from PDFs, photos, worksheets, exam papers, question banks, or a short natural-language project description.
+description: Build or scaffold reusable learning-review web apps for elementary, junior-high, senior-high, exam-prep, monthly-test, homework, or subject-review workflows. Use when the user asks to create 小學學習複習, 國中學習複習, 高中學習複習, 國中會考總複習, 學測考試總複習, 題庫刷題工具, 答題卡練習, 回家作業小程式, 考前複習小程式, or similar apps from PDFs, photos, worksheets, exam papers, question banks, or a short natural-language project description.
 ---
 
 # 複習程式 Skill
@@ -63,22 +63,24 @@ description: Build or scaffold reusable learning-review web apps for elementary,
 - 學測考試總複習：歷屆考題、答題卡練習
 - 回家作業小程式：學生填姓名、作答、自動判分、老師查看結果
 
-使用繁體中文命名使用者看得到的內容。
+使用繁體中文命名使用者看得到的內容。技術資料夾名稱盡量簡短、英文、適合網址使用。
 
 ## 建置流程
 
 1. 檢查或建立專案資料夾。
 2. 保留原始題目檔，不要覆蓋老師提供的資料。
-3. 先分析資料夾內所有題目、答案、解析、圖片、PDF、Word、Excel。
-4. 列出讀到的題目、答案、題型與疑問，等使用者確認。
-5. 確認後再製作小程式。
-6. 完成後用瀏覽器驗證桌面和手機版，至少檢查 390px 寬度。
-7. 如果使用者要上線，協助發布成公開網址。
+3. 建立基本文件：`README.md`、`AGENTS.md` 或 `CLAUDE.md`、`交接文件.md`。
+4. 建立網頁小程式基本結構：`public/index.html`、`src/app.js`、`src/style.css`、`src/question-bank/`、`data/source/`、`data/raw-extract/`、`docs/`。
+5. 先分析資料夾內所有題目、答案、解析、圖片、PDF、Word、Excel。
+6. 列出讀到的題目、答案、題型與疑問，等使用者確認。
+7. 確認後再製作小程式。
+8. 完成後用瀏覽器驗證桌面和手機版，至少檢查 390px 寬度。
+9. 如果使用者要上線，協助發布成公開網址。
 
 ## 介面要求
 
 - 優先做成完整學習工具，不只是簡單題目列表。
-- 可參考「學測複習工具」：頂部標題列、統計列、今日目標、功能分頁、篩選列、中央學習卡、上一題/下一題、困難題、已學、老師或家長查看入口。
+- 可參考「高中學習程式」：頂部標題列、統計列、今日目標、功能分頁、篩選列、中央學習卡、上一題/下一題、困難題、已學、老師或家長查看入口。
 - 不要用 `fieldset/legend` 做題目卡，避免題目壓到框線。
 - 題目卡片高度要由內容自然撐開。
 - 選項要適合學生手機點選，每個選項至少 44px 高。
@@ -89,9 +91,15 @@ description: Build or scaffold reusable learning-review web apps for elementary,
 - 不可以自行改題、補題、猜答案或改解析。
 - 不確定的內容要標記給老師確認。
 - PDF 或圖片 OCR 只能輔助定位，不可當成最終正確文字。
+- 文字題盡量轉成文字。
+- 圖表、公式、插圖或難以重建的版面才裁圖。
+- 題組共用文章、表格、圖片只存一次。
+- 作文、手寫、申論題可以顯示，但不要自動判分，除非老師明確要求。
 - 正式考題不可加入 AI 自創題目，除非老師明確要求。
 
 ## 回家作業預設
+
+第一版建議：
 
 - 不做學生帳號密碼登入。
 - 學生進入網頁後填班級、座號、姓名。
@@ -100,14 +108,16 @@ description: Build or scaffold reusable learning-review web apps for elementary,
 - 是否顯示解析依老師設定。
 - 老師若要查看結果，優先規劃 Google Sheet 或 CSV 匯出。
 
+Google Sheet 欄位建議：班級、座號、姓名、提交時間、分數、答題明細、錯題、使用裝置。
+
 ## 驗收標準
 
 - 題目和答案正確。
 - 學生可以順利填資料、作答、送出。
 - 分數計算正確。
-- 手機直向畫面可讀、可點、不卡住。
-- 題目不可壓線或超出容器。
+- 手機直向畫面可讀、可點、不卡住，題目不可壓線或超出容器。
 - 老師可以看完成名單、未完成名單或可匯出的結果。
+- 如果有上線，公開網址可以正常開啟。
 
 ## 回覆風格
 

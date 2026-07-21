@@ -391,6 +391,7 @@ header.hero.page-el.on{display:flex}
       <a href="#" data-pg="md" onclick="showPage('md');return false">MD 文件</a>
       <a href="#" data-pg="agent" onclick="showPage('agent');return false">實戰練習</a>
       <a href="#" data-pg="teacher" onclick="showPage('teacher');return false">小程式製作</a>
+      <a href="#" data-pg="mcp" onclick="showPage('mcp');return false">MCP/Skills</a>
       <a href="#" data-pg="case" onclick="showPage('case');return false">案例分享</a>
     </div>
   </div>
@@ -877,6 +878,73 @@ header.hero.page-el.on{display:flex}
         <p>如果只是回家作業和課前練習，先不用登入。若未來要長期保存個人成績、避免冒名、做跨班級排行榜，再升級成 Firebase 或 Supabase 帳號系統。</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- MCP / Skills 進階頁 -->
+<section id="mcp" class="tint page-el" data-pg="mcp">
+  <div class="wrap">
+    <div class="eyebrow">進階擴充 · 給有需要的人</div>
+    <h2 class="title">讓 AI 更強：MCP 與 Skills</h2>
+    <p class="lead">裝好工具、會寫 MD 規則之後，還能幫 AI「加裝備」，讓它能力更強。這頁比較進階，<strong>新手可以先略過</strong>，等有需要再回來看。</p>
+
+    <!-- 上層：白話 -->
+    <div class="grid g2" style="margin-bottom:8px">
+      <div class="card">
+        <h3>🔌 MCP 是什麼？</h3>
+        <p>把 AI 接上「外部工具」的一條管線。裝了之後，AI 就能直接讀網頁、查資料、操作別的軟體，不再只是聊天。</p>
+        <div style="margin-top:12px;font-size:13px;color:var(--terra);font-weight:700">比喻：幫 AI 接上水電管線</div>
+      </div>
+      <div class="card">
+        <h3>🧠 Skill 是什麼？</h3>
+        <p>教 AI 一套「做事的流程與規矩」。裝了之後，AI 做特定任務時會照專家的步驟走，產出更穩、更專業。</p>
+        <div style="margin-top:12px;font-size:13px;color:var(--terra);font-weight:700">比喻：給 AI 一本操作手冊</div>
+      </div>
+    </div>
+
+    <!-- 中層：實測推薦 -->
+    <h4 style="font-weight:800;margin:40px 0 4px;font-size:20px">✅ 我的實測推薦（測過才放）</h4>
+    <p style="color:var(--ink-soft);font-size:14.5px;margin-bottom:20px">底下每一項，都是我<strong>自己裝好、實際用過覺得好用</strong>，才放上來。清單是活的，測一個補一個。</p>
+
+    <div class="card" style="border:2px solid var(--terra)">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px">
+        <h3 style="margin:0">🔥 Firecrawl</h3>
+        <span style="font-size:12px;font-weight:800;color:#fff;background:var(--terra);padding:3px 10px;border-radius:8px">MCP · 網頁抓資料</span>
+      </div>
+      <p>輸入一個網址，它把整個網頁抓成<strong>乾淨、AI 好讀的重點文字</strong>，還能搜尋網路、爬整站。</p>
+      <img class="shot" src="assets/2026-07-21_firecrawl_demo.png" alt="Firecrawl 抓取台積電股價的實測畫面" style="width:100%;margin:14px 0 6px">
+      <div style="font-size:13px;color:var(--ink-soft);text-align:center;margin-bottom:6px">↑ 實測畫面：抓台積電（2330）股市頁，幾秒就變成乾淨資料</div>
+      <div style="margin-top:12px;font-size:13.5px;color:var(--ink);background:var(--cream2);padding:10px 14px;border-radius:10px">
+        <strong>為什麼適合我：</strong>做股票研究常要讀財經網頁、新聞、財報 —— 這個一鍵幫我抓乾淨，AI 直接拿去分析。
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:16px;border-left-color:#8a7a6d">🕒 <strong>更多實測中</strong>：其他工具（如讓網頁更好看的 UI/UX 設計 Skill）測過覺得好用，會陸續補上來。</div>
+
+    <!-- 下層：延伸閱讀 -->
+    <h4 style="font-weight:800;margin:40px 0 4px;font-size:20px">📚 更多可參考（延伸閱讀）</h4>
+    <p style="color:var(--ink-soft);font-size:14.5px;margin-bottom:20px">以下是網路上熱門的 MCP／Skill，我<strong>還沒逐一實測</strong>，多半偏程式開發，放這裡給想深入的人自己研究。</p>
+    <div class="grid g2">
+      <div class="card">
+        <h3 style="font-size:16px">🔌 熱門 MCP</h3>
+        <ul style="list-style:none;font-size:13.5px;color:var(--ink-soft);line-height:1.9;margin-top:8px">
+          <li><strong>Playwright</strong> — 讓 AI 自己開瀏覽器點按鈕、截圖測網頁</li>
+          <li><strong>GitHub</strong> — 讓 AI 直接讀寫程式庫、提交修改</li>
+          <li><strong>Context7</strong> — 抓最新的程式語法文件，減少 AI 寫錯</li>
+          <li><strong>資料庫（PostgreSQL / SQLite）</strong> — 讓 AI 直接查資料庫</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="font-size:16px">🧠 熱門 Skill</h3>
+        <ul style="list-style:none;font-size:13.5px;color:var(--ink-soft);line-height:1.9;margin-top:8px">
+          <li><strong>Skill Creator</strong> — 把你跑通的流程打包成新技能（Claude 已內建）</li>
+          <li><strong>UI/UX 設計</strong> — 逼 AI 把網頁做得更好看、不千篇一律</li>
+          <li><strong>Code Reviewer</strong> — 提交前自動幫你抓程式漏洞</li>
+          <li><strong>Excalidraw</strong> — 把系統架構直接畫成手繪風圖表</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">💡 想找更多可搜尋「Claude Code MCP / Skills 推薦」。原則不變：<strong>先自己測、覺得好用，再固定用</strong>。</div>
   </div>
 </section>
 
